@@ -1,20 +1,25 @@
 //import other reducers
 import {combineReducers} from 'redux'
 
-let initialState = {test: true}
+let initialState = {logged_in: false}
 
-let reducer = (state = initialState, action) => {
+let loginReducer = (state = initialState, action) => {
     switch(action.type){
-        case "placeholder":
+        case "LOGIN":
             return {
                 ...state,
-                test: !state.test
+                logged_in: true
+            }
+        case "LOGOUT":
+            return {
+                ...state,
+                logged_in: false
             }
         default:
             return state
     }
 }
 
-const rootReducer = combineReducers({reducer})
+const rootReducer = combineReducers({loginReducer})
 
 export default rootReducer

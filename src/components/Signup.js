@@ -5,6 +5,32 @@ function Signup(props){
 
     const signup = (e) => {
         e.preventDefault()
+        let config = {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json",
+                'Accept': 'application/json'
+            }, 
+            body: JSON.stringify({
+                username: e.target.username.value,
+                password: e.target.password.value,
+                first_name: e.target.first_name.value,
+                last_name: e.target.last_name.value,
+                email: e.target.email.value,
+                img_url: e.target.img_url.value
+            })
+        }
+        fetch('http://localhost:3000/api/v1/users', config)
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.error)
+                alert(resp.error)
+            else {
+                localStorage.token = resp.token
+                e.target.reset()
+                setOpen(false)
+            }
+        })
     }
     return(
         <Modal
@@ -21,7 +47,7 @@ function Signup(props){
                         <Form.Input required label='Last name' placeholder='Last name' name="last_name"/>
                     </Form.Group>
                     <Form.Group widths={2}>
-                        <Form.Input label='Address' placeholder='Address' name="address"/>
+                        <Form.Input label='Profile Picture' placeholder='Image Url' name="img_url"/>
                         <Form.Input required label='Email' placeholder='Email' name="email"/>
                     </Form.Group>
                     <Form.Group widths={2}>

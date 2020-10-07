@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Header, Image, Modal } from 'semantic-ui-react'
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 
@@ -6,7 +7,7 @@ function Login(props){
     const [open, setOpen] = React.useState(false)
 
     const login = (e) => {
-        e.prevent.default()
+        e.preventDefault()
         let configObj = {
             method: 'POST',
             headers: {
@@ -17,15 +18,17 @@ function Login(props){
                 password: e.target.password.value
             })
         }
-        // fetch(url, configObj)
-        // .then(res => res.json())
-        // .then(user => {
-        //     if (user.error)
-        //         alert(user.errot)
-        //     else{
-        //         localStorage.token = user.token
-        //     }
-        // })
+        fetch("http://localhost:3000/api/v1/login", configObj)
+        .then(res => res.json())
+        .then(user => {
+            if (user.error)
+                alert(user.errot)
+            else{
+                localStorage.token = user.token
+                setOpen(false)
+                props.login()
+            }
+        })
     }
 
     return (
@@ -58,5 +61,16 @@ function Login(props){
       </Modal>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        logged_in: state.loginReducer.logged_in
+    }
+}
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: () => dispatch({type: "LOGIN"}),
+        logout: () => dispatch({type: "LOGOUT"})
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
