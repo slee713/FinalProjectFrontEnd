@@ -1,18 +1,19 @@
 import React from 'react'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
+import './NavBar.css'
 function NavBar(props) {
     return(
         <div className="navbar">
-            <button>Home</button>
+            <div>Home</div>
             { 
-            true ?
-            <div>
+            false ?
+            <div className='options'>
                 <button>My Profile</button>
                 <button>My Hiking Trips</button>
                 <button>Logout</button>
             </div>:
-            <div>
+            <div className='options'>
                 <Login/>
                 <Signup/>
             </div>

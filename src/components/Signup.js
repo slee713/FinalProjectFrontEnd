@@ -1,6 +1,11 @@
 import React from 'react'
-
+import {Header, Image, Modal, Checkbox, Button, Form} from 'semantic-ui-react'
 function Signup(props){
+    const [open, setOpen] = React.useState(false)
+
+    const signup = (e) => {
+        e.preventDefault()
+    }
     return(
         <Modal
         onClose={() => setOpen(false)}
@@ -36,3 +41,5 @@ function Signup(props){
         </Modal>
     )
 }
+
+export default Signup

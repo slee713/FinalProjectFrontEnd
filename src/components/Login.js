@@ -1,10 +1,10 @@
 import React from 'react'
-import {Header, Image, Modal, Checkbox, Button, Form} from 'semantic-ui-react'
-
+import { Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 function Login(props){
     const [open, setOpen] = React.useState(false)
-    
+
     const login = (e) => {
         e.prevent.default()
         let configObj = {
@@ -17,15 +17,15 @@ function Login(props){
                 password: e.target.password.value
             })
         }
-        fetch(url, configObj)
-        .then(res => res.json())
-        .then(user => {
-            if (user.error)
-                alert(user.errot)
-            else{
-                localStorage.token = user.token
-            }
-        })
+        // fetch(url, configObj)
+        // .then(res => res.json())
+        // .then(user => {
+        //     if (user.error)
+        //         alert(user.errot)
+        //     else{
+        //         localStorage.token = user.token
+        //     }
+        // })
     }
 
     return (
