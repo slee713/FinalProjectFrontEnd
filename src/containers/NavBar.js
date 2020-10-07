@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from '../components/Login'
-
+import Signup from '../components/Signup'
 function NavBar(props) {
     return(
         <div className="navbar">
@@ -14,7 +14,7 @@ function NavBar(props) {
             </div>:
             <div>
                 <Login/>
-                <button>Signup</button>
+                <Signup/>
             </div>
             }
         </div>
