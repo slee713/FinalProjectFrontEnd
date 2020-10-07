@@ -1,5 +1,7 @@
 import React from 'react'
 import {Header, Image, Modal, Checkbox, Button, Form} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+
 function Signup(props){
     const [open, setOpen] = React.useState(false)
 
@@ -27,7 +29,7 @@ function Signup(props){
                 alert(resp.error)
             else {
                 localStorage.token = resp.token
-                e.target.reset()
+                props.login()
                 setOpen(false)
             }
         })
@@ -68,4 +70,16 @@ function Signup(props){
     )
 }
 
-export default Signup
+const mapStateToProps = state => {
+    return {
+        logged_in: state.loginReducer.logged_in
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        login: () => dispatch({type: "LOGIN"})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup)
