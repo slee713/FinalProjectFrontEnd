@@ -1,4 +1,5 @@
 import React from 'react'
+import Login from '../components/Login'
 
 function NavBar(props) {
     return(
@@ -12,7 +13,7 @@ function NavBar(props) {
                 <button>Logout</button>
             </div>:
             <div>
-                <button>Login</button>
+                <Login/>
                 <button>Signup</button>
             </div>
             }
