@@ -20,7 +20,30 @@ function NewTripForm(props) {
         if(e.target.end_date.value < e.target.start_date.value)
             alert("End Date must be after Start Date")
         else {
-            console.log(e)
+            fetch(props.url+'/hiking_trips', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${localStorage.token}`
+                },
+                body: JSON.stringify({
+                    hiking_project_id: props.trailid,
+                    name: e.target.name.value,
+                    start_date: e.target.start_date.value,
+                    end_date: e.target.end_date.value,
+                    description: e.target.description.value,
+                })
+            })
+            .then(res => res.json())
+            .then(resp => {
+                if (resp.error)
+                    alert(resp.error)
+                else 
+                    setOpen(false)
+                    props.setSelectTrip(resp)
+                    props.history.push(`/mytrips/${resp.id}`)
+            })
         }
     }
 
@@ -59,5 +82,11 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        setSelectTrip: (payload) => dispatch({type: "SELECT_TRIP", payload})
+    }
+}
 
-export default withRouter(connect(mapStateToProps)(NewTripForm))
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewTripForm))
