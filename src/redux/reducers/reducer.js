@@ -1,4 +1,5 @@
 import selectedTrailReducer from './selectedTrailReducer'
+import urlReducer from './urlReducer'
 import {combineReducers} from 'redux'
 
 let initialState = {logged_in: localStorage.token ? true : false}
@@ -20,6 +21,6 @@ let loginReducer = (state = initialState, action) => {
     }
 }
 
-const rootReducer = combineReducers({loginReducer,selectedTrailReducer})
+const rootReducer = combineReducers({loginReducer,selectedTrailReducer, urlReducer})
 
 export default rootReducer
