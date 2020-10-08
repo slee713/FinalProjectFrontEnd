@@ -1,5 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import NewTripForm from '../components/NewTripForm'
+
+
 function HikingTrailPage(props){
 
     const {id, 
@@ -23,14 +26,21 @@ function HikingTrailPage(props){
 
     return (
         <div>
-            {name}
+            <div>
+                {name}
+            </div>
+            <div>
+                {props.logged_in ? 
+                <NewTripForm trail={props.trail}/> : null}
+            </div>
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        trail: state.selectedTrailReducer.selectedTrail
+        trail: state.selectedTrailReducer.selectedTrail,
+        logged_in: state.loginReducer.logged_in
     }
 }
 

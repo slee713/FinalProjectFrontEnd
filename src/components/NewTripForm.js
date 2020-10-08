@@ -1,5 +1,7 @@
 import React from 'react'
 import { Modal, Button, Form} from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 function NewTripForm(props) {
@@ -34,4 +36,10 @@ function NewTripForm(props) {
     )
 }
 
-export default NewTripForm
+const mapDispatchToProps = dispatch => {
+    return {
+        createTrip: () => dispatch()
+    }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(NewTripForm))
