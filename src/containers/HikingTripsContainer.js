@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react' 
 import { connect } from 'react-redux'
 import {fetchingHikingTrips} from '../redux/actions'
+import TripCard from '../components/TripCard'
 
 function HikingTripsContainer(props){
 
@@ -10,7 +11,11 @@ function HikingTripsContainer(props){
 
     return (
         <div>
-            HikingTripsContainer
+            {props.trips.map(trip => 
+                <div>
+                    <TripCard trip={trip}/>
+                </div>
+            )}
         </div>
     )
 }

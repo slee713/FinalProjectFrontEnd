@@ -20,4 +20,6 @@ function fetchingHikingTrips(){
     }
 }
 
+
+
 export { fetchingHikingTrips }
