@@ -34,11 +34,11 @@ function Login(props){
 
     return (
         <Modal
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
-        open={open}
-        trigger={<p>Login</p>}
-        >
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
+            open={open}
+            trigger={<p>Login</p>}
+            >
             <Modal.Header>Login</Modal.Header>
             <Modal.Content>
           
