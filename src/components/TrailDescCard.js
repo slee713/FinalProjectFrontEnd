@@ -1,5 +1,7 @@
 import React from 'react'
 import {Button, Header, Image, Modal} from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import NewTripForm from './NewTripForm'
 
 function TrailDescCard(props){
     const [open, setOpen] = React.useState(false)
@@ -43,13 +45,21 @@ function TrailDescCard(props){
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions>
-                <Button color='red' onClick={()=> setOpen(false)}>
-                    Close
-                </Button>
+                <div className="buttons">
+                    {props.logged_in ? 
+                    <NewTripForm trail={props.trail}/> : null}
+                    <button></button>
+                </div>
                 
             </Modal.Actions>
         </Modal>
     )
 }
 
-export default TrailDescCard
+const mapStateToProps = state => {
+    return {
+        logged_in: state.loginReducer.logged_in
+    }
+}
+
+export default connect(mapStateToProps)(TrailDescCard)

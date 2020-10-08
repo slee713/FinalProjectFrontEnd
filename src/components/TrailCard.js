@@ -1,10 +1,18 @@
 import React from 'react'
 import { Card, Image} from 'semantic-ui-react'
-import TrailDescCard from './TrailDescCard'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
 function TrailCard(props){
     const {id, name, stars, location, length, imgSmall} = props.trail
+
+    const select = (payload) => {
+        props.selectTrail(payload)
+        props.history.push(`/trail/${id}`)
+    }
+
     return (
-        <Card className = "card">
+        <Card className = "card" onClick={()=> select(props.trail)}>
             <Image className="img" src={imgSmall} wrapped ui={false}/>
             <Card.Content>
                 <Card.Header>{name}</Card.Header>
@@ -14,13 +22,13 @@ function TrailCard(props){
                     <p>Distance: {length} miles</p>
                 </Card.Description>
             </Card.Content>
-            <Card.Content extra>
-                <div className='more-info-btn-div'>
-                    <TrailDescCard trail={props.trail}/>
-                </div>
-            </Card.Content>
         </Card>
     )
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        selectTrail: (payload) => dispatch({type: "SELECT", payload: payload})
+    }
+}
 
-export default TrailCard
+export default withRouter(connect(null, mapDispatchToProps)(TrailCard))

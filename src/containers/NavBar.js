@@ -3,6 +3,7 @@ import Login from '../components/Login'
 import Signup from '../components/Signup'
 import './NavBar.css'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 function NavBar(props) {
 
@@ -11,9 +12,13 @@ function NavBar(props) {
         props.logout()
     }
 
+    const home = () => {
+        props.history.push('/')
+    }
+
     return(
         <div className="navbar">
-            <div>Home</div>
+            <div onClick={home}>Home</div>
             { 
             props.logged_in ?
             <div className='options'>
@@ -41,4 +46,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))
