@@ -31,7 +31,7 @@ function HikingTrailPage(props){
             </div>
             <div>
                 {props.logged_in ? 
-                <NewTripForm trail={props.trail}/> : null}
+                <NewTripForm trailid={id}/> : null}
             </div>
         </div>
     )
