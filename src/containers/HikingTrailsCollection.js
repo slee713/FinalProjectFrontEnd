@@ -1,9 +1,14 @@
 import React from 'react'
+import TrailCard from '../components/TrailCard'
 
 function HikingTrailsCollection(props){
     return(
         <div>
-            <h1>hiking cards</h1>
+            {props.hikingTrails.map(trail => 
+                <div>
+                    <TrailCard trail={trail}/>
+                </div>
+            )}
         </div>
     )
 }

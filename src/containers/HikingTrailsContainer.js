@@ -17,7 +17,7 @@ const mapContainerStyle={
 
 function HikingTrailsContainer(props){
     const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: "AIzaSyCGcXmA-vXRkTlM7ieJnagW7jsEVzZ3a64",
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY_MOD_5,
         libraries
     })
     const [mapView, setMapView] = React.useState(false)
@@ -89,7 +89,7 @@ function HikingTrailsContainer(props){
                 </InfoWindow> : null}
             </GoogleMap>
             :
-            <HikingTrailsCollection />
+            <HikingTrailsCollection hikingTrails={hikingTrails}/>
             }
             
         </div>
