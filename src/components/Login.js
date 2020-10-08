@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Header, Image, Modal } from 'semantic-ui-react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Modal } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 function Login(props){
     const [open, setOpen] = React.useState(false)
@@ -18,6 +18,7 @@ function Login(props){
                 password: e.target.password.value
             })
         }
+        
         fetch("http://localhost:3000/api/v1/login", configObj)
         .then(res => res.json())
         .then(user => {

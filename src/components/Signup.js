@@ -1,5 +1,5 @@
 import React from 'react'
-import {Header, Image, Modal, Checkbox, Button, Form} from 'semantic-ui-react'
+import { Modal, Button, Form} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 function Signup(props){

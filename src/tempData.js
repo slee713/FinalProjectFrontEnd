@@ -1,4 +1,4 @@
-export default data = {
+ let data = {
     "trails": [
     {
     "id": 7011192,
@@ -253,3 +253,5 @@ export default data = {
     ],
     "success": 1
     }
+
+    export default data
