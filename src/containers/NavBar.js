@@ -16,6 +16,10 @@ function NavBar(props) {
         props.history.push('/')
     }
 
+    const myTrips = () => {
+        props.history.push('/mytrips')
+    }
+
     return(
         <div className="navbar">
             <div onClick={home}>Home</div>
@@ -23,7 +27,7 @@ function NavBar(props) {
             props.logged_in ?
             <div className='options'>
                 <button>My Profile</button>
-                <button>My Hiking Trips</button>
+                <button onClick={myTrips}>My Hiking Trips</button>
                 <button onClick={logout}>Logout</button>
             </div>:
             <div className='options'>
