@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal } from 'semantic-ui-react'
-import { Button, Form } from 'semantic-ui-react'
+import { Header, Image, Modal} from 'semantic-ui-react'
+import {Form, Button} from 'semantic-ui-react'
 
 function Login(props){
     const [open, setOpen] = React.useState(false)
