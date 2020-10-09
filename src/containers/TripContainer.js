@@ -13,6 +13,8 @@ import {
     InfoWindow
 } from '@react-google-maps/api'
 
+import EditHikingTripForm from '../components/EditHikingTripForm'
+
 const mapContainerStyle = {
     width: '40vw',
     height: '40vh'
@@ -28,7 +30,7 @@ function TripContainer(props){
     const {latitude , longitude, location } = props.trail
 
     useEffect(()=>{
-        props.fetchTrailData(props.trip.hiking_project_id)
+        // props.fetchTrailData(props.trip.hiking_project_id)
     }, [])
 
     const {isLoaded, loadError} = useLoadScript({
@@ -57,7 +59,13 @@ function TripContainer(props){
             <div className="tripInfo">
                 <div className="general">
                     <div className="info">
-                        <h3>{name}</h3>
+                        <div className= 'header'>
+                            <h3>{name}</h3>
+                            <div>
+                                <EditHikingTripForm/>
+                                <p>Delete</p>
+                            </div>
+                        </div>
                         <p>Location: {location}</p>
                         <p>Start Date: {start_date}</p>
                         <p>End Date: {end_date}</p>
@@ -110,7 +118,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchTrailData: (id) => dispatch(fetchingTrailData(id))
+        // fetchTrailData: (id) => dispatch(fetchingTrailData(id))
     }
 }
 

@@ -59,14 +59,42 @@ function loadTrailData(trail){
 
 function fetchingTrailData(hiking_project_id){
     return (dispatch) => {
-        fetch(HikingProjURL+`${hiking_project_id}&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
+        // fetch(HikingProjURL+`${hiking_project_id}&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
+        // .then(res => res.json())
+        // .then(resp => {
+        //     dispatch(loadTrailData(resp.trails[0]))
+        // })
+    }
+}
+
+function updateHikingTripInfo(hiking_trip){
+    return {type: "UPDATED_TRIP", payload: hiking_trip}
+}
+
+function updatingHikingTripInfo(id, hiking_project_id, name, start_date, end_date, description){
+    return (dispatch) => {
+        fetch(URL+`hiking_trips/${id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                name,
+                hiking_project_id,
+                start_date,
+                end_date,
+                description
+            })
+        })
         .then(res => res.json())
-        .then(resp => {
-            dispatch(loadTrailData(resp.trails[0]))
+        .then(updatedTrip => {
+            dispatch(updateHikingTripInfo(updatedTrip))
         })
     }
 }
 
 
 
-export { fetchingHikingTrips, creatingHikingTrip, fetchingTrailData }
+export { fetchingHikingTrips, creatingHikingTrip, fetchingTrailData, updatingHikingTripInfo }

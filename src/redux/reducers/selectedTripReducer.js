@@ -5,6 +5,11 @@ let selectedTripReducer = (state = {trip: {}}, action ) => {
                 ...state,
                 trip: action.payload
             }
+        case "UPDATED_TRIP":
+            return {
+                ...state,
+                trip: action.payload
+            }
         default:
             return state
     }
