@@ -10,6 +10,7 @@ function NavBar(props) {
     const logout = () => {
         localStorage.clear()
         props.logout()
+        props.history.push('/')
     }
 
     const home = () => {
