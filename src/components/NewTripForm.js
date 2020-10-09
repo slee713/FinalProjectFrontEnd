@@ -3,6 +3,8 @@ import { Modal, Button, Form} from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { creatingHikingTrip } from '../redux/actions'
+
 
 function NewTripForm(props) {
     const [open, setOpen] = React.useState(false)
@@ -12,7 +14,7 @@ function NewTripForm(props) {
     const yyyy = today.getFullYear();
     let todaysDate = yyyy + '-' + mm + '-' + dd
 
-    const createTrip = (e) => {
+    const createTrip = (e, id) => {
         e.preventDefault()
         if(e.target.start_date.value < todaysDate){
             alert("Starting date cannot be before today's date.")
@@ -20,30 +22,9 @@ function NewTripForm(props) {
         if(e.target.end_date.value < e.target.start_date.value)
             alert("End Date must be after Start Date")
         else {
-            fetch(props.url+'/hiking_trips', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': `Bearer ${localStorage.token}`
-                },
-                body: JSON.stringify({
-                    hiking_project_id: props.trailid,
-                    name: e.target.name.value,
-                    start_date: e.target.start_date.value,
-                    end_date: e.target.end_date.value,
-                    description: e.target.description.value,
-                })
-            })
-            .then(res => res.json())
-            .then(resp => {
-                if (resp.error)
-                    alert(resp.error)
-                else 
-                    setOpen(false)
-                    props.setSelectTrip(resp)
-                    props.history.push(`/mytrips/${resp.id}`)
-            })
+            setOpen(false)
+            props.setSelectTrip(e, id)
+            props.history.push(`/mytrips/${id}`)
         }
     }
 
@@ -56,7 +37,7 @@ function NewTripForm(props) {
         >
             <Modal.Header>Hiking Trip Form</Modal.Header>
             <Modal.Content>
-                <Form onSubmit={(e) => createTrip(e)}>
+                <Form onSubmit={(e) => createTrip(e, props.trailid)}>
                     <Form.Field >
                         <Form.Input required label='Event Name' placeholder='Event Name' name="name" />
                     </Form.Field>
@@ -84,7 +65,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setSelectTrip: (payload) => dispatch({type: "SELECT_TRIP", payload})
+        setSelectTrip: (e, id) => dispatch(creatingHikingTrip(e, id))
     }
 }
 

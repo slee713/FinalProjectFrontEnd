@@ -14,9 +14,9 @@ function TripCard(props){
         <div>
             <Card onClick={handleClick}>
                 <Card.Content>
-                    <Card.Header content='Jake Smith' />
-                    <Card.Meta content='Musicians' />
-                    <Card.Description content='Jake is a drummer living in New York.' />
+                    <Card.Header content={props.trip.name} />
+                    <Card.Meta content={props.trip.start_date} />
+                    <Card.Description content={props.trip.users.map(user => `${user.first_name} ${user.last_name}`).join(', ')} />
                 </Card.Content>
             </Card>
         </div>

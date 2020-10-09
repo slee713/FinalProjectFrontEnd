@@ -66,7 +66,7 @@ function HikingTrailsContainer(props){
             {mapView ? 
             <GoogleMap 
                 mapContainerStyle={mapContainerStyle} 
-                zoom={13}
+                zoom={11}
                 center={center}
                 onLoad={onMapLoad}
             >
@@ -81,10 +81,10 @@ function HikingTrailsContainer(props){
                     />)}
                 {selected ? 
                 <InfoWindow 
-                    position={{lat: parseFloat(selected.location.latitude), lng: parseFloat(selected.location.longitude)}}
+                    position={{lat: parseFloat(selected.latitude), lng: parseFloat(selected.longitude)}}
                     onCloseClick={()=> setSelected(null)}>
                     <div>
-                        <h2>trailname</h2>
+                        <h2>{selected.name}</h2>
                     </div>
                 </InfoWindow> : null}
             </GoogleMap>
