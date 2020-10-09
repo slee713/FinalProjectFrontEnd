@@ -26,6 +26,7 @@ function Login(props){
                 alert(user.errot)
             else{
                 localStorage.token = user.token
+                localStorage.id = user.id
                 setOpen(false)
                 props.login()
             }

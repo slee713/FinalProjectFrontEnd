@@ -29,6 +29,7 @@ function Signup(props){
                 alert(resp.error)
             else {
                 localStorage.token = resp.token
+                localStorage.id = resp.id
                 props.login()
                 setOpen(false)
             }
