@@ -1,0 +1,15 @@
+.body {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.tripInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.tripNavBar {
+    display: flex;
+    flex-direction: row;
+}

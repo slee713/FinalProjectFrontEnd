@@ -9,11 +9,13 @@ function HikingTripsContainer(props){
         props.fetchingHikingTrips()
     }, [])
 
+   
+
     return (
         <div>
             {props.trips.map(trip => 
                 <div>
-                    <TripCard trip={trip}/>
+                    <TripCard key={trip.id} trip={trip}/>
                 </div>
             )}
         </div>
@@ -29,7 +31,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchingHikingTrips: () => dispatch( fetchingHikingTrips() )
+        fetchingHikingTrips: () => dispatch( fetchingHikingTrips() ),
     }
 }
 
