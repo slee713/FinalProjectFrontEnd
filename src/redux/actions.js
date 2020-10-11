@@ -150,6 +150,23 @@ function updatingGroupGearItem(id, name, qty, notes){
 }
 
 
+function deletedGroupGearItem(id){
+    return {type: 'DELETE_GROUP_ITEM', payload: id}
+}
+
+function deletingGroupGearItem(id){
+    return (dispatch) => {
+        fetch(URL+`group_gear_items/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+        }})
+        .then( 
+            dispatch(deletedGroupGearItem(id))
+        )
+    }
+}
+
 
 
 
@@ -160,5 +177,6 @@ export {
     fetchingTrailData, 
     updatingHikingTripInfo , 
     addingGroupGearItem,
-    updatingGroupGearItem
+    updatingGroupGearItem,
+    deletingGroupGearItem
 }

@@ -34,6 +34,13 @@ let selectedTripReducer = (state = {trip: {}}, action ) => {
                     })]
                 }
             }
+        case 'DELETE_GROUP_ITEM':
+            return {
+                ...state,
+                trip: {...state.trip,
+                    group_gear_items: [...state.trip.group_gear_items.filter(item => item.id !== action.payload)]
+                    }
+                }
         default:
             return state
     }
