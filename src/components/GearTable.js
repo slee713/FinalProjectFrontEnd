@@ -19,13 +19,18 @@ function GearTable(props){
     const submitForm = (e)=>{
         e.preventDefault()
         console.log(id, name, qty, notes)
+        setId(null)
+        setName(null)
+        setQty(null)
+        setNotes(null)
+        console.log(id,name,qty,notes)
         e.target.reset()
  
     }
 
     return(
         <div>
-            <h4>Shared Gear</h4>
+            <h4>{props.category} Gear</h4>
             <form onSubmit={(e) => submitForm(e)}>
                 <input type="hidden" value={id} />
                 <label>Item</label>

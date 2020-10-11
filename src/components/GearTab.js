@@ -23,8 +23,8 @@ function GearTab (props){
 
     return (
         <div>
-            <GearTable category="group" items={props.trip.group_gear_items} />
-            <GearTable category="personal" items={props.user.personal_gear_items}/>
+            <GearTable category="Group" items={props.trip.group_gear_items} />
+            <GearTable category="Personal" items={props.user.personal_gear_items}/>
         </div>
     )
 }
