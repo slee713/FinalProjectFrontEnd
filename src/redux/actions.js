@@ -123,31 +123,31 @@ function addingGroupGearItem(name, qty, notes, hiking_trip_id){
     }
 }
 
-// function updatedGroupGearItem(item){
-//     return {type: "UPDATE_GROUP_ITEM", payload: item}
-// }
+function updatedGroupGearItem(item){
+    return {type: "UPDATE_GROUP_ITEM", payload: item}
+}
 
-// function updatingGroupGearItem(id, name, qty, notes){
-//     return (dispatch) => {
-//         fetch(URL+`group_gear_items/${id}`, {
-//             method: 'PATCH',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'Accept': 'application/json',
-//                 'Authorization': `Bearer ${localStorage.token}`
-//             },
-//             body: JSON.stringify({
-//                 name,
-//                 qty,
-//                 notes
-//             })
-//         })
-//         .then(res => res.json())
-//         .then(updatedGroupItem => {
-//             dispatch(updatedGroupGearItem(updatedGroupItem))
-//         })
-//     }
-// }
+function updatingGroupGearItem(id, name, qty, notes){
+    return (dispatch) => {
+        fetch(URL+`group_gear_items/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                name,
+                qty,
+                notes
+            })
+        })
+        .then(res => res.json())
+        .then(updatedGroupItem => {
+            dispatch(updatedGroupGearItem(updatedGroupItem))
+        })
+    }
+}
 
 
 
@@ -160,5 +160,5 @@ export {
     fetchingTrailData, 
     updatingHikingTripInfo , 
     addingGroupGearItem,
-    // updatingGroupGearItem
+    updatingGroupGearItem
 }

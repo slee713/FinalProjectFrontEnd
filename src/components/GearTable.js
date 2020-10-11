@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addingGroupGearItem } from '../redux/actions'
+import { addingGroupGearItem, updatingGroupGearItem } from '../redux/actions'
 
 function GearTable(props){
     const [action, setAction] = React.useState('add')
@@ -26,7 +26,7 @@ function GearTable(props){
             if (action === 'add')
                 props.addItem(name, qty, notes, props.hikingTripID)
             else 
-                props.updateItem(name, qty, notes)
+                props.updateItem(id, name, qty, notes)
         }
         setAction('add')
         setId(null)
@@ -83,7 +83,7 @@ function GearTable(props){
 const mapDispatchToProps = dispatch => {
     return {
         addItem: (name, qty, notes, hikingTripId) => dispatch(addingGroupGearItem(name, qty, notes, hikingTripId)),
-        updateItem: null,
+        updateItem: (id, name, qty, notes) => dispatch(updatingGroupGearItem(id, name, qty,notes)),
         deleteItem: null
     }
 }
