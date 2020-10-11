@@ -97,4 +97,7 @@ function updatingHikingTripInfo(id, hiking_project_id, name, start_date, end_dat
 
 
 
+
+
+
 export { fetchingHikingTrips, creatingHikingTrip, fetchingTrailData, updatingHikingTripInfo }

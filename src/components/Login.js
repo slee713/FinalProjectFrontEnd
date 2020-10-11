@@ -21,14 +21,15 @@ function Login(props){
         
         fetch("http://localhost:3000/api/v1/login", configObj)
         .then(res => res.json())
-        .then(user => {
-            if (user.error)
-                alert(user.errot)
+        .then(resp => {
+           
+            if (resp.error)
+                alert(resp.error)
             else{
-                localStorage.token = user.token
-                localStorage.id = user.id
+                localStorage.token = resp.token
+                localStorage.id = resp.user.id
                 setOpen(false)
-                props.login()
+                props.login(resp.user)
             }
         })
     }
@@ -71,7 +72,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: () => dispatch({type: "LOGIN"}),
+        login: (payload) => dispatch({type: "LOGIN", payload}),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
