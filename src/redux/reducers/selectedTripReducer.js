@@ -10,6 +10,16 @@ let selectedTripReducer = (state = {trip: {}}, action ) => {
                 ...state,
                 trip: action.payload
             }
+        case "ADD_GROUP_ITEM":
+            return{
+                ...state,
+                trip: {...state.trip,
+                    group_gear_items: [ ...state.trip.group_gear_items,
+                        action.payload
+                    ]
+                }
+            }
+       
         default:
             return state
     }
