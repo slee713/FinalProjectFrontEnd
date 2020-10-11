@@ -3,7 +3,7 @@ import {connect } from 'react-redux'
 import './TripContainer.css'
 import { fetchingTrailData } from '../redux/actions'
 import TrailInfo from '../components/TrailInfo'
-import GearList from '../components/GearList'
+import GearTab from '../components/GearTab'
 import FoodPlan from '../components/FoodPlan'
 import RoutePlan from '../components/RoutePlan'
 import {
@@ -96,7 +96,7 @@ function TripContainer(props){
                 </div>
                 <div className="displayWindow">
                     { view === 'trail' ? <TrailInfo /> :
-                     view === 'gear' ? <GearList  /> :
+                     view === 'gear' ? <GearTab  /> :
                      view === 'food' ? <FoodPlan /> :
                      view === 'route' ? <RoutePlan /> : null
                     }
