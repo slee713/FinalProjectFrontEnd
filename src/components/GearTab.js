@@ -4,22 +4,6 @@ import { connect } from 'react-redux'
 import GearTable from './GearTable'
 
 function GearTab (props){
-    
-
-//     const editButton= (item) => {
-//         setAction("edit")
-//         setId(item.id)
-//         setName(item.name)
-//         setQty(item.qty)
-//         setNotes(item.notes)
-//     }
-
-//    const submitForm = (e)=>{
-//        e.preventDefault()
-//        console.log(id, name, qty, notes)
-//        e.target.reset()
-
-//    }
 
     return (
         <div>

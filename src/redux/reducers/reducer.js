@@ -21,6 +21,43 @@ let loginReducer = (state = initialState, action) => {
                 logged_in: false,
                 user: {}
             }
+        case "ADD_PERSONAL_ITEM":
+            state = {
+                ...state,
+                user: {
+                    ...state.user,
+                    personal_gear_items:[
+                        ...state.user.personal_gear_items,
+                        action.payload
+                    ]
+                }
+            }
+            return state
+        case "UPDATE_PERSONAL_ITEM":
+            state = {
+                ...state,
+                user: {
+                    ...state.user,
+                    personal_gear_items:[...state.user.personal_gear_items.map(item => {
+                        if (item.id === action.payload.id){
+                            return {
+                                ...action.payload
+                            }
+                        }
+                        else 
+                            return item
+                    })]
+                }
+            }
+            return state
+        case "DELETE_PERSONAL_ITEM":
+            state = {
+                ...state,
+                user: {
+                    ...state.user,
+                    personal_gear_items: [...state.user.personal_gear_items.filter(item => item.id !== action.payload)]
+                }
+            }
         default:
             return state
     }

@@ -167,6 +167,70 @@ function deletingGroupGearItem(id){
     }
 }
 
+function addedPersonalItem(item){
+    return {type: "ADD_PERSONAL_ITEM", payload: item}
+}
+
+function addingPersonalItem(name, qty, notes){
+    return (dispatch) => {
+        fetch(URL + `personal_gear_items`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                name,
+                qty,
+                notes
+            })
+        })
+        .then(resp => resp.json())
+        .then(newItem => addedPersonalItem(newItem))
+    }
+}
+
+function updatedPersonalItem(item){
+    return {type: "UPDATE_PERSONAL_ITEM", payload: item}
+}
+
+function updatingPersonalItem(id, name, qty, notes){
+    return (dispatch) => {
+        fetch(URL+`personal_gear_items/${id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                name,
+                qty, 
+                notes
+            })
+        })
+        .then(res => res.json())
+        .then(updatedItem => dispatch(updatedPersonalItem(updatedItem)))
+    }
+}
+
+function deletedPersonalItem(id){
+    return {type: 'DELETE_PERSONAL_ITEM', payload: id}
+}
+
+function deletingPersonalItem(id){
+    return (dispatch) => {
+        fetch(URL+`personal_gear_items/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        })
+        .then(dispatch(deletedPersonalItem(id)))
+    }
+}
+
 
 
 
@@ -178,5 +242,8 @@ export {
     updatingHikingTripInfo , 
     addingGroupGearItem,
     updatingGroupGearItem,
-    deletingGroupGearItem
+    deletingGroupGearItem,
+    addingPersonalItem,
+    updatingPersonalItem,
+    deletingPersonalItem
 }

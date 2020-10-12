@@ -1,7 +1,14 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addingGroupGearItem, updatingGroupGearItem, deletingGroupGearItem } from '../redux/actions'
+import { 
+    addingGroupGearItem, 
+    updatingGroupGearItem, 
+    deletingGroupGearItem,
+    addingPersonalItem,
+    updatingPersonalItem,
+    deletingPersonalItem
+} from '../redux/actions'
 
 function GearTable(props){
     const [action, setAction] = React.useState('add')
@@ -22,24 +29,22 @@ function GearTable(props){
         e.preventDefault()
         console.log(id, name, qty, notes)
 
-        if (props.category === 'Group'){
-            if (action === 'add')
-                props.addItem(name, qty, notes, props.hikingTripID)
-            else 
-                props.updateItem(id, name, qty, notes)
-        }
+        
+        if (action === 'add')
+            props.addItem(props.category, name, qty, notes, props.hikingTripID)
+        else 
+            props.updateItem(props.category, id, name, qty, notes)
+        
         setAction('add')
         setId(null)
         setName(null)
         setQty(null)
         setNotes(null)
         e.target.reset()
- 
     }
 
     const deleteItem = (id) => {
-        if (props.category === 'Group')
-            props.deleteItem(id)
+        props.deleteItem(props.category, id)
     }
 
     return(
@@ -87,9 +92,24 @@ function GearTable(props){
 
 const mapDispatchToProps = dispatch => {
     return {
-        addItem: (name, qty, notes, hikingTripId) => dispatch(addingGroupGearItem(name, qty, notes, hikingTripId)),
-        updateItem: (id, name, qty, notes) => dispatch(updatingGroupGearItem(id, name, qty,notes)),
-        deleteItem: (id) => dispatch(deletingGroupGearItem(id))
+        addItem: (category, name, qty, notes, hikingTripId) => {
+            if (category==='Group')
+                dispatch(addingGroupGearItem(name, qty, notes, hikingTripId))
+            else 
+                dispatch(addingPersonalItem(name,qty,notes))
+            },
+        updateItem: (category,id, name, qty, notes) => {
+            if (category==='Group')
+                dispatch(updatingGroupGearItem(id, name, qty,notes))
+            else
+                dispatch(updatingPersonalItem(id, name, qty, notes))
+            },
+        deleteItem: (category, id) => {
+            if(category === 'Group')
+                dispatch(deletingGroupGearItem(id))
+            else 
+                dispatch(deletingPersonalItem(id))
+        }
     }
 }
 
