@@ -58,6 +58,47 @@ let loginReducer = (state = initialState, action) => {
                     personal_gear_items: [...state.user.personal_gear_items.filter(item => item.id !== action.payload)]
                 }
             }
+            return state
+        case "ADD_FOOD_PLAN":
+            state = {
+                ...state,
+                user: {
+                    ...state.user,
+                    food_plans: [
+                        ...state.user.food_plans,
+                        action.payload
+                    ]
+                }
+            }
+            return state
+        case "UPDATE_FOOD_PLAN":
+            state = {
+                ...state,
+                user: {
+                    ...state.user,
+                    food_plans: [
+                        ...state.user.food_plans.map(plan => {
+                            if(plan.id === action.payload.id){
+                                return {
+                                    ...action.payload
+                                }
+                            }
+                            else 
+                                return plan
+                        })
+                    ]
+                }
+            }
+            return state
+        case "DELETE_FOOD_PLAN":
+            state = {
+                ...state,
+                user: {
+                    ...state.user,
+                    food_plans: [...state.user.food_plans.filter(plan => plan.id !== action.payload)]
+                }
+            }
+            return state
         default:
             return state
     }
