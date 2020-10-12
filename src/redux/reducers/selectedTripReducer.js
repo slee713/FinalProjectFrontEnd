@@ -20,8 +20,8 @@ let selectedTripReducer = (state = {trip: {}}, action ) => {
                 }
             }
         case "UPDATE_GROUP_ITEM":
-            return{
-                ...state,
+            
+            state={  ...state,
                 trip: {...state.trip,
                     group_gear_items: [...state.trip.group_gear_items.map(item => {
                         if (item.id === action.payload.id){
@@ -34,13 +34,14 @@ let selectedTripReducer = (state = {trip: {}}, action ) => {
                     })]
                 }
             }
+            return state
         case 'DELETE_GROUP_ITEM':
-            return {
-                ...state,
-                trip: {...state.trip,
+            state = {
+                trip :{...state.trip,
                     group_gear_items: [...state.trip.group_gear_items.filter(item => item.id !== action.payload)]
-                    }
                 }
+            }
+            return state
         default:
             return state
     }
