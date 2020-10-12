@@ -97,7 +97,7 @@ function TripContainer(props){
                 <div className="displayWindow">
                     { view === 'trail' ? <TrailInfo /> :
                      view === 'gear' ? <GearTab  /> :
-                     view === 'food' ? <FoodPlan /> :
+                     view === 'food' ? <FoodPlan hiking_trip_id={props.trip.id}/> :
                      view === 'route' ? <RoutePlan /> : null
                     }
                 </div>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Table } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import {
+    addingFoodPlan 
+} from '../redux/actions'
 
 function FoodPlan(props){
     const [action, setAction] = useState('add')
@@ -25,15 +28,30 @@ function FoodPlan(props){
 
     const submitForm = (e) => {
         e.preventDefault()
+        if (action === 'add')
+            props.addFoodPlan(day, breakfast,lunch, dinner,snacks,notes, props.hiking_trip_id)
+        setAction('add')
+        setId(null)
+        setDay(null)
+        setBreakfast(null)
+        setLunch(null)
+        setDinner(null)
+        setSnacks(null)
+        setNotes(null)
+        e.target.reset()
     }
+
+    // const deleteFoodPlan = (id) => {
+    //     null
+    // }
 
     return(
         <div>
             <h4>Food Plan</h4>
             <form onSubmit={(e)=> submitForm(e)}>
-                <input type="hidden" name="id"  value ={id}onChange={(e)=> setId(e.target.value)}/>
+                <input type="hidden" name="id"  value ={id} onChange={(e)=> setId(e.target.value)}/>
                 <label>Date</label>
-                <input name="date" value={day} onChange={(e) => setDay(e.target.value)}/>
+                <input name="date" type="date" value={day} onChange={(e) => setDay(e.target.value)}/>
                 <label>Breakfast</label>
                 <input name="breakfast" value={breakfast} onChange={(e) => setBreakfast(e.target.value)}/>
                 <label>Lunch</label>
@@ -88,7 +106,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addFoodPlan: null,
+        addFoodPlan: (day, breakfast, lunch, dinner, snacks, notes, hiking_trip_id) => {
+            dispatch(addingFoodPlan(day, breakfast,lunch, dinner, snacks, notes, hiking_trip_id))
+        },
         updateFoodPlan: null,
         deleteFoodPlan: null
     }

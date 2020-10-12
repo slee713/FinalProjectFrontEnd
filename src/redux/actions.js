@@ -231,6 +231,38 @@ function deletingPersonalItem(id){
     }
 }
 
+function addedFoodPlan(foodPlan){
+    return {type: "ADD_FOOD_PLAN", payload: foodPlan}
+}
+
+function addingFoodPlan(day, breakfast, lunch, dinner, snacks, notes, hiking_trip_id){
+    return (dispatch) => {
+        fetch(URL + `food_plans?hiking_trip_id=${hiking_trip_id}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                day,
+                breakfast,
+                lunch,
+                dinner,
+                snacks,
+                notes
+            })
+        })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.error)
+                alert(resp.error)
+            else
+                dispatch(addedFoodPlan(resp))
+        })
+    }
+}
+
 
 
 
@@ -245,5 +277,6 @@ export {
     deletingGroupGearItem,
     addingPersonalItem,
     updatingPersonalItem,
-    deletingPersonalItem
+    deletingPersonalItem,
+    addingFoodPlan
 }
