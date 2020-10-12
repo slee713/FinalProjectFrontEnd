@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { Table } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {
-    addingFoodPlan 
+    addingFoodPlan,
+    updatingFoodPlan,
+    deletingFoodPlan
 } from '../redux/actions'
 
 function FoodPlan(props){
@@ -30,6 +32,8 @@ function FoodPlan(props){
         e.preventDefault()
         if (action === 'add')
             props.addFoodPlan(day, breakfast,lunch, dinner,snacks,notes, props.hiking_trip_id)
+        else 
+            props.updateFoodPlan(id, day, breakfast, lunch ,dinner ,snacks, notes)
         setAction('add')
         setId(null)
         setDay(null)
@@ -41,9 +45,9 @@ function FoodPlan(props){
         e.target.reset()
     }
 
-    // const deleteFoodPlan = (id) => {
-    //     null
-    // }
+    const deleteFoodPlan = (id) => {
+        props.deleteFoodPlan(id)
+    }
 
     return(
         <div>
@@ -89,7 +93,7 @@ function FoodPlan(props){
                             <Table.Cell>{item.notes}</Table.Cell>
                             <Table.Cell>
                                 <button onClick={() =>editBtn(item)}>Edit</button>
-                                <span><button>Delete</button></span>
+                                <span><button onClick={() => deleteFoodPlan(item.id)}>Delete</button></span>
                             </Table.Cell>
                         </Table.Row>)}
                 </Table.Body>
@@ -109,8 +113,10 @@ const mapDispatchToProps = dispatch => {
         addFoodPlan: (day, breakfast, lunch, dinner, snacks, notes, hiking_trip_id) => {
             dispatch(addingFoodPlan(day, breakfast,lunch, dinner, snacks, notes, hiking_trip_id))
         },
-        updateFoodPlan: null,
-        deleteFoodPlan: null
+        updateFoodPlan: (id, day, breakfast, lunch, dinner, snacks, notes) => {
+            dispatch(updatingFoodPlan(id, day, breakfast, lunch, dinner, snacks, notes))
+        },
+        deleteFoodPlan: (id) => dispatch(deletingFoodPlan(id))
     }
 }
 

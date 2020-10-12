@@ -13,7 +13,9 @@ let loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 logged_in: true,
-                user: action.payload
+                user: {...action.payload,
+                    food_plans: [...action.payload.food_plans.sort((a,b) => a.day > b.day ? 1: -1)]
+                }
             }
         case "LOGOUT":
             return {
@@ -60,32 +62,35 @@ let loginReducer = (state = initialState, action) => {
             }
             return state
         case "ADD_FOOD_PLAN":
+            let foodPlans= [...state.user.food_plans, action.payload]
             state = {
                 ...state,
                 user: {
                     ...state.user,
                     food_plans: [
-                        ...state.user.food_plans,
-                        action.payload
+                        ...foodPlans.sort((a,b) => a.day > b.day ? 1 : -1)
                     ]
                 }
             }
             return state
         case "UPDATE_FOOD_PLAN":
+            let updatedFoodPlans = [
+                ...state.user.food_plans.map(plan => {
+                    if(plan.id === action.payload.id){
+                        return {
+                            ...action.payload
+                        }
+                    }
+                    else 
+                        return plan
+                })
+            ]
             state = {
                 ...state,
                 user: {
                     ...state.user,
                     food_plans: [
-                        ...state.user.food_plans.map(plan => {
-                            if(plan.id === action.payload.id){
-                                return {
-                                    ...action.payload
-                                }
-                            }
-                            else 
-                                return plan
-                        })
+                        ...updatedFoodPlans.sort((a,b) => a.day > b.day ? 1 : -1)
                     ]
                 }
             }

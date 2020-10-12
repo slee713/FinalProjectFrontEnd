@@ -90,7 +90,10 @@ function updatingHikingTripInfo(id, hiking_project_id, name, start_date, end_dat
         })
         .then(res => res.json())
         .then(updatedTrip => {
-            dispatch(updateHikingTripInfo(updatedTrip))
+            if (updatedTrip.error)
+                alert(updatedTrip.error)
+            else
+                dispatch(updateHikingTripInfo(updatedTrip))
         })
     }
 }
@@ -117,8 +120,10 @@ function addingGroupGearItem(name, qty, notes, hiking_trip_id){
         })
         .then(res => res.json())
         .then(newGroupItem => {
-            
-            dispatch(addedGroupGearItem(newGroupItem))
+            if(newGroupItem.error)
+                alert(newGroupItem.error)
+            else
+                dispatch(addedGroupGearItem(newGroupItem))
         })
     }
 }
@@ -144,7 +149,10 @@ function updatingGroupGearItem(id, name, qty, notes){
         })
         .then(res => res.json())
         .then(updatedGroupItem => {
-            dispatch(updatedGroupGearItem(updatedGroupItem))
+            if (updatedGroupItem.error)
+                alert(updatedGroupItem.error)
+            else
+                dispatch(updatedGroupGearItem(updatedGroupItem))
         })
     }
 }
@@ -187,7 +195,12 @@ function addingPersonalItem(name, qty, notes){
             })
         })
         .then(resp => resp.json())
-        .then(newItem => addedPersonalItem(newItem))
+        .then(newItem => {
+            if(newItem.error)
+                alert(newItem.error)
+            else
+                addedPersonalItem(newItem)
+        })
     }
 }
 
@@ -211,7 +224,12 @@ function updatingPersonalItem(id, name, qty, notes){
             })
         })
         .then(res => res.json())
-        .then(updatedItem => dispatch(updatedPersonalItem(updatedItem)))
+        .then(updatedItem => {
+            if(updatedItem.error)
+                alert(updatedItem.error)
+            else
+                dispatch(updatedPersonalItem(updatedItem))
+        })
     }
 }
 
@@ -263,8 +281,53 @@ function addingFoodPlan(day, breakfast, lunch, dinner, snacks, notes, hiking_tri
     }
 }
 
+function updatedFoodPlan(foodPlan){
+    return {type: "UPDATE_FOOD_PLAN", payload: foodPlan}
+}
 
+function updatingFoodPlan(id, day, breakfast,lunch, dinner, snacks, notes){
+    return (dispatch) => {
+        fetch(URL+`food_plans/${id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                day,
+                breakfast, 
+                lunch,
+                dinner,
+                snacks, 
+                notes
+            })
+        })
+        .then(res => res.json())
+        .then(foodPlan => {
+            if (foodPlan.error)
+                alert(foodPlan.error)
+            else 
+                dispatch(updatedFoodPlan(foodPlan))
+        })
+    }
+}
 
+function deletedFoodPlan(id){
+    return { type: "DELETE_FOOD_PLAN", payload: id}
+}
+
+function deletingFoodPlan(id){
+    return (dispatch)=>{
+        fetch(URL+`food_plans/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        })
+        .then(dispatch(deletedFoodPlan(id)))
+    }
+}
 
 
 export { 
@@ -278,5 +341,7 @@ export {
     addingPersonalItem,
     updatingPersonalItem,
     deletingPersonalItem,
-    addingFoodPlan
+    addingFoodPlan,
+    updatingFoodPlan,
+    deletingFoodPlan
 }
