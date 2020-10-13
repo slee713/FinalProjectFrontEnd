@@ -6,6 +6,7 @@ import TrailInfo from '../components/TrailInfo'
 import GearTab from '../components/GearTab'
 import FoodPlan from '../components/FoodPlan'
 import RoutePlan from '../components/RoutePlan'
+import AddFriendTrip from '../components/AddFriendTrip'
 import {
     GoogleMap,
     useLoadScript,
@@ -65,6 +66,7 @@ function TripContainer(props){
                                 <EditHikingTripForm/>
                                 <p>Delete</p>
                             </div>
+                            <AddFriendTrip />
                         </div>
                         <p>Location: {location}</p>
                         <p>Start Date: {start_date}</p>
