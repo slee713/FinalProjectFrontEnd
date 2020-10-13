@@ -79,8 +79,8 @@ function GearTable(props){
                             <Table.Cell>{item.qty}</Table.Cell>
                             <Table.Cell>{item.notes}</Table.Cell>
                             <Table.Cell>
-                                <p onClick={()=> editButton(item)}>Edit</p>
-                                <p onClick={() => deleteItem(item.id)}>Delete</p>
+                                <span> <button onClick={()=> editButton(item)}>Edit</button>
+                               <button onClick={() => deleteItem(item.id)}>Delete</button></span>
                             </Table.Cell>
                         </Table.Row>
                     )}
