@@ -32,6 +32,7 @@ function RoutePlan(){
 
     const submitForm = (e) => {
         e.preventDefault()
+        debugger;
         if (action ==='add')
             dispatch(addingStop(stop, name, elevation, distance, notes, trip.id ))
         else 
