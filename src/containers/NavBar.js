@@ -27,13 +27,17 @@ function NavBar(props) {
         setLogin(true)
     }
 
+    const myProfile = () => {
+        props.history.push('/profile')
+    }
+
     return(
         <div className="navbar">
             <div onClick={home}>Home</div>
             { 
             login ?
             <div className='options'>
-                <button>My Profile</button>
+                <button onClick={myProfile}>My Profile</button>
                 <button onClick={myTrips}>My Hiking Trips</button>
                 <button onClick={logout}>Logout</button>
             </div>:

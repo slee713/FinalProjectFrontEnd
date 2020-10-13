@@ -29,8 +29,8 @@ function Signup(props){
                 alert(resp.error)
             else {
                 localStorage.token = resp.token
-                localStorage.id = resp.id
-                props.login()
+                localStorage.id = resp.user.id
+                props.login(resp.user)
                 setOpen(false)
             }
         })
@@ -79,7 +79,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        login: () => dispatch({type: "LOGIN"})
+        login: (payload) => dispatch({type: "LOGIN", payload})
     }
 }
 
