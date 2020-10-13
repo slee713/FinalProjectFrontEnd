@@ -25,7 +25,7 @@ function NavBar(props) {
         <div className="navbar">
             <div onClick={home}>Home</div>
             { 
-            props.logged_in ?
+            localStorage.token ?
             <div className='options'>
                 <button>My Profile</button>
                 <button onClick={myTrips}>My Hiking Trips</button>

@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import rootReducer from './redux/reducers/reducer'
 import { createStore, applyMiddleware, compose } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import { Provider } from 'react-redux'
 import 'semantic-ui-css/semantic.min.css'
 import thunk from 'redux-thunk'

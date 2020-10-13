@@ -5,24 +5,18 @@ import userTripsReducer from './userTripsReducer'
 import trailInfoReducer from './trailInfoReducer'
 import {combineReducers} from 'redux'
 
-let initialState = {logged_in: localStorage.token ? true : false, user: {}}
+let initialState = { user: {}}
 
 let loginReducer = (state = initialState, action) => {
     switch(action.type){
         case "LOGIN":
             return {
                 ...state,
-                logged_in: true,
                 user: {...action.payload,
                     food_plans: [...action.payload.food_plans.sort((a,b) => a.day > b.day ? 1: -1)]
                 }
             }
-        case "LOGOUT":
-            return {
-                ...state,
-                logged_in: false,
-                user: {}
-            }
+            
         case "ADD_PERSONAL_ITEM":
             state = {
                 ...state,
@@ -109,7 +103,7 @@ let loginReducer = (state = initialState, action) => {
     }
 }
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
     loginReducer,
     selectedTrailReducer, 
     urlReducer, 
@@ -117,5 +111,12 @@ const rootReducer = combineReducers({
     userTripsReducer,
     trailInfoReducer
  })
+
+ const rootReducer = (state,action) => {
+     if (action.type === 'LOGOUT')
+        state = undefined;
+
+    return appReducer(state,action)
+ }
 
 export default rootReducer
