@@ -46,11 +46,6 @@ function AddFriendTrip(){
                         options={options}
                         onChange={handleChange}
                     />
-                    {/* <select name="friends" multiple>
-                        {nonMembers.map(friend => 
-                            <option value={friend.id}>{friend.first_name} {friend.last_name}</option>
-                        )}
-                    </select> */}
                     <Button type="submit">Invite to Trip</Button>
                 </Form>
             </Modal.Content>
