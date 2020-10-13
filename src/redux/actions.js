@@ -329,6 +329,83 @@ function deletingFoodPlan(id){
     }
 }
 
+function addedStop(newStop){
+    return {type: "ADD_STOP", payload: newStop}
+}
+
+function addingStop(stop, name, elevation, distance, notes, hiking_trip_id){
+    return (dispatch) => {
+        fetch(URL + `stops?hiking_trip_id=${hiking_trip_id}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                stop,
+                name,
+                elevation,
+                distance,
+                notes
+            })
+        })
+        .then(res => res.json())
+        .then(newStop => {
+            if (newStop.error)
+                alert(newStop.error)
+            else 
+                dispatch(addedStop(newStop))
+        })
+    }
+}
+
+function updateStop(updatedStop){
+    return { type: 'UPDATE_STOP', payload: updatedStop}
+}
+
+function updatingStop(id, stop, name, elevation, distance, notes){
+    return (dispatch) => {
+        fetch(URL + `stops/${id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                stop, 
+                name,
+                elevation,
+                distance,
+                notes
+            })
+        })
+        .then(res => res.json())
+        .then(updatedStop => {
+            if (updatedStop.error)
+                alert(updatedStop.error)
+            else 
+                dispatch(updateStop(updatedStop))
+        })
+    }
+}
+
+function deleteStop(id){
+    return {type: "DELETE_STOP", payload: id}
+}
+
+function deletingStop(id){
+    return (dispatch) => {
+        fetch(URL +`stops/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        })
+        .then(dispatch(deleteStop(id)))
+    }
+}
 
 export { 
     fetchingHikingTrips, 
@@ -343,5 +420,8 @@ export {
     deletingPersonalItem,
     addingFoodPlan,
     updatingFoodPlan,
-    deletingFoodPlan
+    deletingFoodPlan,
+    addingStop,
+    updatingStop,
+    deletingStop
 }
