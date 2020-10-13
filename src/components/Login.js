@@ -30,6 +30,7 @@ function Login(props){
                 localStorage.id = resp.user.id
                 setOpen(false)
                 props.login(resp.user)
+                props.loginStatus()
             }
         })
     }

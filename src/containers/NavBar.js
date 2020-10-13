@@ -6,9 +6,11 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 function NavBar(props) {
+    const [login, setLogin] = React.useState(localStorage.token ? true : false)
 
     const logout = () => {
         localStorage.clear()
+        setLogin(false)
         props.logout()
         props.history.push('/')
     }
@@ -21,18 +23,22 @@ function NavBar(props) {
         props.history.push('/mytrips')
     }
 
+    const loginStatus = () => {
+        setLogin(true)
+    }
+
     return(
         <div className="navbar">
             <div onClick={home}>Home</div>
             { 
-            localStorage.token ?
+            login ?
             <div className='options'>
                 <button>My Profile</button>
                 <button onClick={myTrips}>My Hiking Trips</button>
                 <button onClick={logout}>Logout</button>
             </div>:
             <div className='options'>
-                <Login/>
+                <Login loginStatus={loginStatus}/>
                 <Signup/>
             </div>
             }
