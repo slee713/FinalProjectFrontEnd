@@ -407,6 +407,34 @@ function deletingStop(id){
     }
 }
 
+function addFriendToTrip(friend){
+    return { type: "ADD_FRIEND", payload: friend}
+}
+
+function addingFriendToTrip(friend, hiking_trip_id){
+    return(dispatch) => {
+        fetch(URL + 'user_hikes', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                user_id: friend.id,
+                hiking_trip_id
+            })
+        })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.error)
+                alert(resp.error)
+            else 
+                dispatch(addFriendToTrip(friend))
+        })
+    }
+}
+
 export { 
     fetchingHikingTrips, 
     creatingHikingTrip, 
@@ -423,5 +451,6 @@ export {
     deletingFoodPlan,
     addingStop,
     updatingStop,
-    deletingStop
+    deletingStop,
+    addingFriendToTrip
 }
