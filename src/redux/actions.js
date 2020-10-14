@@ -480,6 +480,97 @@ function fetchingUsers(){
     }
 }
 
+function acceptFriendRequest(user){
+    return { type: "ADD_FRIEND", payload: user}
+}
+
+function removeFriendFromUsers(user){
+    return { type: "REMOVE_USER", payload: user}
+}
+
+function handleRequest(request){
+    return {type: 'HANDLE_REQUEST', payload: request}
+}
+
+function acceptingFriendRequest(request){
+    return (dispatch) => {
+        fetch(URL + `friendships`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                user_id: request.friend_id,
+                friend_id: request.user_id
+            })
+        })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.error)
+                alert(resp.error)
+            else  { 
+                dispatch(acceptFriendRequest(request.user))
+                dispatch(handleRequest(request))
+                dispatch(removeFriendFromUsers(request.user))
+            }
+        })
+    }
+}
+
+function sendingFriendRequest(user, nonfriend){
+    return (dispatch) => {
+        fetch(URL + 'friendships', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                user_id: user.id,
+                friend_id: nonfriend.id
+            })
+        })
+    }
+}
+
+function rejectingFriendRequest(request){
+    return (dispatch) => {
+        fetch(URL +`friendships/${request.id}`, {
+            method: "DELETE",
+            headers:{
+                Authorization: `Bearer ${localStorage.token}`
+            },
+        })
+        .then(dispatch(handleRequest(request)))
+    }
+}
+
+function removeFriend(friend){
+    return {type: "REMOVE_FRIEND", payload: friend}
+}
+
+function addToUsers(friend){
+    return {type: "ADD_USER", payload: friend}
+}
+
+function removingFriend(friend){
+    return (dispatch) => {
+        fetch(URL + `friendships?friend_id=${friend.id}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then(() => {
+            dispatch(removeFriend(friend))
+            dispatch(addToUsers(friend))
+        })
+    }
+}
+
 export { 
     fetchingHikingTrips, 
     creatingHikingTrip, 
@@ -499,5 +590,9 @@ export {
     deletingStop,
     addingFriendToTrip,
     fetchingFriendRequests,
-    fetchingUsers
+    fetchingUsers,
+    acceptingFriendRequest,
+    sendingFriendRequest,
+    rejectingFriendRequest,
+    removingFriend
 }

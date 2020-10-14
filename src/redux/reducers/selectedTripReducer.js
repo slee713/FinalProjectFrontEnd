@@ -80,17 +80,6 @@ let selectedTripReducer = (state = {trip: {}}, action ) => {
                 }
             }
             return state
-        case 'ADD_FRIEND':
-            state={
-                trip: {
-                    ...state.trip,
-                    users: [
-                        ...state.trip.users,
-                        action.payload
-                    ]
-                }
-            }
-            return state
         default:
             return state
     }

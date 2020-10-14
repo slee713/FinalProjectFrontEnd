@@ -99,6 +99,25 @@ let loginReducer = (state = initialState, action) => {
                 }
             }
             return state
+
+        case "ADD_FRIEND":
+            state = {
+                ...state,
+                user: {
+                    ...state.user,
+                    friends: [...state.user.friends, action.payload]
+                }
+            }
+            return state
+        case "REMOVE_FRIEND":
+            state = {
+                ...state,
+                user: {
+                    ...state.user,
+                    friends: [...state.user.friends.filter(friend => friend.id !== action.payload.id)]
+                }
+            }
+            return state
         default:
             return state
     }

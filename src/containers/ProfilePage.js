@@ -1,8 +1,15 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
 import { Card, Feed, Icon, Image } from 'semantic-ui-react'
-import { fetchingFriendRequests, fetchingUsers } from '../redux/actions'
+import { 
+    fetchingFriendRequests, 
+    fetchingUsers, 
+    acceptingFriendRequest,
+    sendingFriendRequest,
+    rejectingFriendRequest,
+    removingFriend 
+} from '../redux/actions'
 import './ProfilePage.css'
 function ProfilePage(props){
 
@@ -10,7 +17,7 @@ function ProfilePage(props){
     const friendRequests = useSelector(state => state.friendRequestReducer.friendRequests)
     const users = useSelector(state => state.allUserReducer.users)
 
-   
+   const dispatch = useDispatch()
 
     useEffect(()=> {
         props.loadUsers()
@@ -24,9 +31,21 @@ function ProfilePage(props){
         </a>
     )
 
-    const submitPost = (e) => {
-        e.preventDefault()
-    }
+   const acceptRequest = (request) => {
+        dispatch(acceptingFriendRequest(request))
+   }
+
+   const rejectRequest = (request) => {
+       dispatch(rejectingFriendRequest(request))
+   }
+
+   const requestFriend = (user, friend) => {
+        dispatch(sendingFriendRequest(user, friend))
+   }
+
+   const removeFriend = (friend) => {
+        dispatch(removingFriend(friend))
+   }
     return(
         <div className="profile">
            <div className="userInfo">
@@ -60,8 +79,8 @@ function ProfilePage(props){
                                         <Feed.Summary>
                                             {request.user.first_name} wants to be your friend!
                                             Would You like to Add {request.user.first_name}?
-                                            <button>Yes</button>
-                                            <button>No</button>
+                                            <button onClick={()=>acceptRequest(request)}>Yes</button>
+                                            <button onClick={() => rejectRequest(request)}>No</button>
                                         </Feed.Summary>
                                     </Feed.Content>
                                 </Feed.Event>
@@ -86,7 +105,7 @@ function ProfilePage(props){
                                     <Feed.Content>
                                         <Feed.Summary>
                                             {`${friend.first_name} ${friend.last_name}`}
-                                            <button>Remove</button>
+                                            <button onClick={() => removeFriend(friend)}>Remove</button>
                                         </Feed.Summary>
                                     </Feed.Content>
                                 </Feed.Event>
@@ -105,13 +124,13 @@ function ProfilePage(props){
                        </Card.Content>
                        <Card.Content>
                            <Feed>
-                               {users.map(user => 
+                               {users.map(aUser => 
                                 <Feed.Event>
-                                    <Feed.Label image={user.img_url ? user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
+                                    <Feed.Label image={aUser.img_url ? aUser.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
                                     <Feed.Content>
                                         <Feed.Summary>
-                                            {`${user.first_name} ${user.last_name}`}
-                                            <button>Add</button>
+                                            {`${aUser.first_name} ${aUser.last_name}`}
+                                            <button onClick={() => requestFriend(user, aUser)}>Add</button>
                                         </Feed.Summary>
                                     </Feed.Content>
                                 </Feed.Event>

@@ -5,7 +5,12 @@ let friendRequestReducer = (state = {friendRequests: []}, action) => {
                 ...state,
                 friendRequests: [...action.payload]
             }
-        
+        case "HANDLE_REQUEST":
+            
+            return {
+                ...state,
+                friendRequests: [...state.friendRequests.filter(request => request.id!== action.payload.id)]
+            }
         default:
             return state
     }
