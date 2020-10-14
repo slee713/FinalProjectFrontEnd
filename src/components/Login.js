@@ -26,11 +26,11 @@ function Login(props){
             if (resp.error)
                 alert(resp.error)
             else{
+                props.loginStatus()
                 localStorage.token = resp.token
                 localStorage.id = resp.user.id
                 setOpen(false)
                 props.login(resp.user)
-                props.loginStatus()
             }
         })
     }

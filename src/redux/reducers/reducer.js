@@ -3,6 +3,8 @@ import urlReducer from './urlReducer'
 import selectedTripReducer from './selectedTripReducer'
 import userTripsReducer from './userTripsReducer'
 import trailInfoReducer from './trailInfoReducer'
+import friendRequestReducer from './friendRequestReducer'
+import allUserReducer from './allUserReducer'
 import {combineReducers} from 'redux'
 
 let initialState = { user: {}}
@@ -109,7 +111,9 @@ const appReducer = combineReducers({
     urlReducer, 
     selectedTripReducer, 
     userTripsReducer,
-    trailInfoReducer
+    trailInfoReducer,
+    friendRequestReducer,
+    allUserReducer
  })
 
  const rootReducer = (state,action) => {

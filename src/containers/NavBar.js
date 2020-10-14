@@ -43,7 +43,7 @@ function NavBar(props) {
             </div>:
             <div className='options'>
                 <Login loginStatus={loginStatus}/>
-                <Signup/>
+                <Signup loginStatus={loginStatus}/>
             </div>
             }
         </div>

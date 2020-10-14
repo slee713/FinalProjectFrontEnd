@@ -32,6 +32,7 @@ function Signup(props){
                 localStorage.id = resp.user.id
                 props.login(resp.user)
                 setOpen(false)
+                props.loginStatus()
             }
         })
     }

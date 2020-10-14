@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import { Card, Feed, Icon, Image } from 'semantic-ui-react'
+import { fetchingFriendRequests, fetchingUsers } from '../redux/actions'
 import './ProfilePage.css'
-function ProfilePage(){
+function ProfilePage(props){
 
     const user = useSelector(state => state.loginReducer.user)
-    
+    const friendRequests = useSelector(state => state.friendRequestReducer.friendRequests)
+    const users = useSelector(state => state.allUserReducer.users)
+
+   
+
+    useEffect(()=> {
+        props.loadUsers()
+        props.loadFriendRequests()
+    }, [])
+
     const extra = (
         <a>
             <Icon name="user"/>
@@ -42,13 +53,13 @@ function ProfilePage(){
                        </Card.Content>
                        <Card.Content>
                            <Feed>
-                               {user.friends.map(friend => 
+                               {friendRequests.map(request => 
                                 <Feed.Event>
-                                    <Feed.Label image={friend.img_url ? friend.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
+                                    <Feed.Label image={request.user.img_url ? request.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
                                     <Feed.Content>
                                         <Feed.Summary>
-                                            {friend.first_name} wants to be your friend!
-                                            Would You like to Add {friend.first_name}?
+                                            {request.user.first_name} wants to be your friend!
+                                            Would You like to Add {request.user.first_name}?
                                             <button>Yes</button>
                                             <button>No</button>
                                         </Feed.Summary>
@@ -61,28 +72,65 @@ function ProfilePage(){
 
                </div>
                <div className="friends">
-                   
-                    {user.friends.map(friend => 
-                        <Card>
-                            <Card.Content>
-                                <Image
-                                    floated='right'
-                                    size='mini'
-                                    src={friend.img_url ? friend.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}
-                                />
-                                <Card.Header>{`${friend.first_name} ${friend.last_name}`}</Card.Header>
-                                <Card.Meta>{friend.username}</Card.Meta>
-                            </Card.Content>
-                        </Card>
-                    )}        
+                    <Card>
+                       <Card.Content>
+                           <Card.Header>
+                                Friends
+                           </Card.Header>
+                       </Card.Content>
+                       <Card.Content>
+                           <Feed>
+                               {user.friends.map(friend => 
+                                <Feed.Event>
+                                    <Feed.Label image={friend.img_url ? friend.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
+                                    <Feed.Content>
+                                        <Feed.Summary>
+                                            {`${friend.first_name} ${friend.last_name}`}
+                                            <button>Remove</button>
+                                        </Feed.Summary>
+                                    </Feed.Content>
+                                </Feed.Event>
+                                )}
+                           </Feed>
+                       </Card.Content>
+                   </Card>
                     
                </div>
                <div className="users">
-
+                    <Card>
+                       <Card.Content>
+                           <Card.Header>
+                                Users
+                           </Card.Header>
+                       </Card.Content>
+                       <Card.Content>
+                           <Feed>
+                               {users.map(user => 
+                                <Feed.Event>
+                                    <Feed.Label image={user.img_url ? user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
+                                    <Feed.Content>
+                                        <Feed.Summary>
+                                            {`${user.first_name} ${user.last_name}`}
+                                            <button>Add</button>
+                                        </Feed.Summary>
+                                    </Feed.Content>
+                                </Feed.Event>
+                                )}
+                           </Feed>
+                       </Card.Content>
+                   </Card>
                </div>
            </div>
         </div>
     )
 }
 
-export default ProfilePage
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadFriendRequests: () => dispatch(fetchingFriendRequests()),
+        loadUsers: () => dispatch(fetchingUsers())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ProfilePage)

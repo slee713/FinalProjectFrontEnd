@@ -435,6 +435,51 @@ function addingFriendToTrip(friend, hiking_trip_id){
     }
 }
 
+function fetchFriendRequests(friendRequests){
+    return {type: "LOAD_REQUESTS", payload: friendRequests}
+}
+
+function fetchingFriendRequests(){
+    return(dispatch) => {
+        fetch(URL + 'friendships', {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${localStorage.token}`
+            }
+        })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.error)
+                alert(resp.error)
+            else
+                dispatch(fetchFriendRequests(resp))
+        })
+    }
+}
+
+function fetchedUsers(users){
+    return {type: "ALL_USERS", payload: users}
+}
+
+function fetchingUsers(){
+    return (dispatch) => {
+        fetch(URL + 'users', {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.error)
+                alert(resp.error)
+            else
+                dispatch(fetchedUsers(resp))
+            
+        })
+    }
+}
+
 export { 
     fetchingHikingTrips, 
     creatingHikingTrip, 
@@ -452,5 +497,7 @@ export {
     addingStop,
     updatingStop,
     deletingStop,
-    addingFriendToTrip
+    addingFriendToTrip,
+    fetchingFriendRequests,
+    fetchingUsers
 }
