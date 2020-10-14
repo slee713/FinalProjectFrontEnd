@@ -41,6 +41,7 @@ function Signup(props){
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
+        size='small'
         trigger={<p>Signup</p>}
         >
             <Modal.Header>Signup</Modal.Header>

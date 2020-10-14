@@ -40,6 +40,7 @@ function Login(props){
             onClose={() => setOpen(false)}
             onOpen={() => setOpen(true)}
             open={open}
+            size='mini'
             trigger={<p>Login</p>}
             >
             <Modal.Header>Login</Modal.Header>
