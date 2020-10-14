@@ -1,0 +1,18 @@
+.profile {
+    display: flex;
+    flex-direction: row;
+}
+.userInfo {
+    width: auto;
+}
+
+.newsfeed{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.users {
+    display:flex;
+    flex-direction: column;
+}
