@@ -4,6 +4,7 @@ import NewTripForm from '../components/NewTripForm'
 
 
 function HikingTrailPage(props){
+    
 
     const {id, 
         name, 
@@ -30,7 +31,7 @@ function HikingTrailPage(props){
                 {name}
             </div>
             <div>
-                {props.logged_in ? 
+                {props.loggedIn ? 
                 <NewTripForm trailid={id}/> : null}
             </div>
         </div>
@@ -40,7 +41,7 @@ function HikingTrailPage(props){
 const mapStateToProps = state => {
     return {
         trail: state.selectedTrailReducer.selectedTrail,
-        logged_in: state.loginReducer.logged_in
+        loggedIn: state.loginReducer.loggedIn
     }
 }
 

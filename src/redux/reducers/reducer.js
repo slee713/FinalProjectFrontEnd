@@ -7,13 +7,14 @@ import friendRequestReducer from './friendRequestReducer'
 import allUserReducer from './allUserReducer'
 import {combineReducers} from 'redux'
 
-let initialState = { user: {}}
+let initialState = { loggedIn: false, user: {}}
 
 let loginReducer = (state = initialState, action) => {
     switch(action.type){
         case "LOGIN":
             return {
                 ...state,
+                loggedIn: true,
                 user: {...action.payload,
                     food_plans: [...action.payload.food_plans.sort((a,b) => a.day > b.day ? 1: -1)]
                 }
@@ -58,14 +59,12 @@ let loginReducer = (state = initialState, action) => {
             }
             return state
         case "ADD_FOOD_PLAN":
-            let foodPlans= [...state.user.food_plans, action.payload]
+            
             state = {
                 ...state,
                 user: {
                     ...state.user,
-                    food_plans: [
-                        ...foodPlans.sort((a,b) => a.day > b.day ? 1 : -1)
-                    ]
+                    food_plans: [...state.user.food_plans, action.payload]
                 }
             }
             return state

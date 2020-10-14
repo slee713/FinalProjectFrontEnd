@@ -199,7 +199,7 @@ function addingPersonalItem(name, qty, notes){
             if(newItem.error)
                 alert(newItem.error)
             else
-                addedPersonalItem(newItem)
+                dispatch(addedPersonalItem(newItem))
         })
     }
 }
