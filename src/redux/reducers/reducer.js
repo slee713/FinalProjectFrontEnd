@@ -59,12 +59,12 @@ let loginReducer = (state = initialState, action) => {
             }
             return state
         case "ADD_FOOD_PLAN":
-            
+            let food_plan = [...state.user.food_plans, action.payload]
             state = {
                 ...state,
                 user: {
                     ...state.user,
-                    food_plans: [...state.user.food_plans, action.payload]
+                    food_plans: [...food_plan.sort((a,b) => a.day > b.day ? 1: -1)]
                 }
             }
             return state

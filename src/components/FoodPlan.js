@@ -30,19 +30,25 @@ function FoodPlan(props){
 
     const submitForm = (e) => {
         e.preventDefault()
-        if (action === 'add')
-            props.addFoodPlan(day, breakfast,lunch, dinner,snacks,notes, props.hiking_trip_id)
-        else 
-            props.updateFoodPlan(id, day, breakfast, lunch ,dinner ,snacks, notes)
-        setAction('add')
-        setId(null)
-        setDay(null)
-        setBreakfast(null)
-        setLunch(null)
-        setDinner(null)
-        setSnacks(null)
-        setNotes(null)
-        e.target.reset()
+        if (day < props.trip.start_date)
+            alert('Day cannot be before Trip Start Date')
+        else if(day > props.trip.end_date)
+            alert('Date cannot be after Trip End Date')
+        else {
+            if (action === 'add')
+                props.addFoodPlan(day, breakfast,lunch, dinner,snacks,notes, props.hiking_trip_id)
+            else 
+                props.updateFoodPlan(id, day, breakfast, lunch ,dinner ,snacks, notes)
+            setAction('add')
+            setId(null)
+            setDay(null)
+            setBreakfast(null)
+            setLunch(null)
+            setDinner(null)
+            setSnacks(null)
+            setNotes(null)
+            e.target.reset()
+        }
     }
 
     const deleteFoodPlan = (id) => {
@@ -104,7 +110,8 @@ function FoodPlan(props){
 
 const mapStateToProps = state => {
     return {
-        foodPlans: state.loginReducer.user.food_plans
+        foodPlans: state.loginReducer.user.food_plans,
+        trip: state.selectedTripReducer.trip
     }
 }
 
