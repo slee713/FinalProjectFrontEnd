@@ -16,7 +16,14 @@ let loginReducer = (state = initialState, action) => {
                 ...state,
                 loggedIn: true,
                 user: {...action.payload,
-                    food_plans: [...action.payload.food_plans.sort((a,b) => a.day > b.day ? 1: -1)]
+                    food_plans: [...action.payload.food_plans.sort((a,b) => a.day > b.day ? 1 : -1)]
+                }
+            }
+        case "FETCH_USER":
+            return {
+                ...state,
+                user: {...action.payload,
+                    food_plans: [...action.payload.food_plans.sort((a,b) => a.day > b.day ? 1 : -1)]
                 }
             }
             

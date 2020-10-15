@@ -8,7 +8,8 @@ import {
     acceptingFriendRequest,
     sendingFriendRequest,
     rejectingFriendRequest,
-    removingFriend 
+    removingFriend,
+    fetchingUser 
 } from '../redux/actions'
 import './ProfilePage.css'
 function ProfilePage(props){
@@ -23,6 +24,7 @@ function ProfilePage(props){
         // props.loadUsers()
         // props.loadFriendRequests()
         let update = setInterval(()=>{
+            props.loadUser()
             props.loadUsers()
             props.loadFriendRequests()
         }, 1000)
@@ -156,7 +158,8 @@ function ProfilePage(props){
 const mapDispatchToProps = dispatch => {
     return {
         loadFriendRequests: () => dispatch(fetchingFriendRequests()),
-        loadUsers: () => dispatch(fetchingUsers())
+        loadUsers: () => dispatch(fetchingUsers()),
+        loadUser: () => dispatch(fetchingUser())
     }
 }
 

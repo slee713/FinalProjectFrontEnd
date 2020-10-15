@@ -595,6 +595,25 @@ function removingFriend(friend){
     }
 }
 
+function fetchedUser(user){
+    return {type: "FETCH_USER", payload: user}
+}
+
+function fetchingUser(){
+    return (dispatch) => {
+        fetch(URL+`users/${localStorage.id}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then(res => res.json())
+        .then(user => {
+            dispatch(fetchedUser(user))
+        })
+    }
+}
+
 export { 
     fetchingHikingTrips, 
     creatingHikingTrip, 
@@ -619,5 +638,6 @@ export {
     acceptingFriendRequest,
     sendingFriendRequest,
     rejectingFriendRequest,
-    removingFriend
+    removingFriend,
+    fetchingUser
 }
