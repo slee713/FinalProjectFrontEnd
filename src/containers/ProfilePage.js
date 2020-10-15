@@ -20,8 +20,16 @@ function ProfilePage(props){
    const dispatch = useDispatch()
 
     useEffect(()=> {
-        props.loadUsers()
-        props.loadFriendRequests()
+        // props.loadUsers()
+        // props.loadFriendRequests()
+        let update = setInterval(()=>{
+            props.loadUsers()
+            props.loadFriendRequests()
+        }, 1000)
+
+        return () => {
+            clearInterval(update)
+        }
     }, [])
 
     const extra = (
