@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import {connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import './TripContainer.css'
-import { fetchingTrailData } from '../redux/actions'
+import { fetchingTrailData, deletingHikingTrip } from '../redux/actions'
 import TrailInfo from '../components/TrailInfo'
 import GearTab from '../components/GearTab'
 import FoodPlan from '../components/FoodPlan'
@@ -30,16 +31,19 @@ function TripContainer(props){
 
     const {latitude , longitude, location } = props.trail
 
-    useEffect(()=>{
-        // props.fetchTrailData(props.trip.hiking_project_id)
-    }, [])
+    // useEffect(()=>{
+    //     // props.fetchTrailData(props.trip.hiking_project_id)
+    // }, [])
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY_MOD_5,
         libraries
     })
     
-
+    const deleteTrip = () => {
+        props.deleteTrip(props.trip)
+        props.history.push('/mytrips')
+    }
 
 
 
@@ -64,7 +68,7 @@ function TripContainer(props){
                             <h3>{name}</h3>
                             <div>
                                 <EditHikingTripForm/>
-                                <p>Delete</p>
+                                <p onClick={deleteTrip}>Delete</p>
                             </div>
                             <AddFriendTrip />
                         </div>
@@ -121,7 +125,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         // fetchTrailData: (id) => dispatch(fetchingTrailData(id))
+        deleteTrip: (trip) => dispatch(deletingHikingTrip(trip))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TripContainer)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TripContainer))

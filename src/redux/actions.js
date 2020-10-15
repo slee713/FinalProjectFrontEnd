@@ -25,6 +25,7 @@ function setSelectedTrip(hiking_trip){
 }
 
 
+
 function creatingHikingTrip(e, id){
     return (dispatch) => {
         fetch(URL+'/hiking_trips', {
@@ -48,6 +49,29 @@ function creatingHikingTrip(e, id){
                 alert(hikingTrip.error)
             else
                 dispatch(setSelectedTrip(hikingTrip))
+        })
+    }
+}
+
+function deletedHikingTrip(){
+    return{type: "DELETE_TRIP"}
+}
+
+function deleteTripFromList(trip){
+    return {type: "DELETE_TRIP_FROM_LIST", payload: trip}
+}
+
+function deletingHikingTrip(trip){
+    return (dispatch) => {
+        fetch(URL +`hiking_trips/${trip.id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then( () => {
+            dispatch(deletedHikingTrip)
+            dispatch(deleteTripFromList(trip))
         })
     }
 }
@@ -574,6 +598,7 @@ function removingFriend(friend){
 export { 
     fetchingHikingTrips, 
     creatingHikingTrip, 
+    deletingHikingTrip,
     fetchingTrailData, 
     updatingHikingTripInfo , 
     addingGroupGearItem,

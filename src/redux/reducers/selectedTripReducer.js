@@ -16,6 +16,11 @@ let selectedTripReducer = (state = {trip: {}}, action ) => {
                     stops: [...action.payload.stops.sort((a,b) => a.stop - b.stop)]
                 }
             }
+        case "DELETE_TRIP":
+            return {
+                ...state,
+                trip: {}
+            }
         case "ADD_GROUP_ITEM":
             state = {
                 ...state,
