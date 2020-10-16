@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import {connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import './TripContainer.css'
-import { fetchingTrailData, deletingHikingTrip } from '../redux/actions'
+import { fetchingTrailData, deletingHikingTrip, fetchingMessages, creatingMessage } from '../redux/actions'
 import TrailInfo from '../components/TrailInfo'
+import { Card, Feed, Icon, Image } from 'semantic-ui-react'
 import GearTab from '../components/GearTab'
 import FoodPlan from '../components/FoodPlan'
 import RoutePlan from '../components/RoutePlan'
@@ -31,9 +32,16 @@ function TripContainer(props){
 
     const {latitude , longitude, location } = props.trail
 
-    // useEffect(()=>{
-    //     // props.fetchTrailData(props.trip.hiking_project_id)
-    // }, [])
+    useEffect(()=>{
+        // props.fetchTrailData(props.trip.hiking_project_id)
+        let load = setInterval(()=>{
+            props.loadMessages(id)
+        }, 1000)
+
+        return () => {
+            clearInterval(load)
+        }
+    }, [])
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY_MOD_5,
@@ -45,7 +53,11 @@ function TripContainer(props){
         props.history.push('/mytrips')
     }
 
-
+    const submitMessage = (e) => {
+        e.preventDefault()
+        props.createMessage(e.target.content.value, id)
+        e.target.reset()
+    }
 
     const mapRef = React.useRef()
 
@@ -109,7 +121,42 @@ function TripContainer(props){
                 </div>
             </div>
             <div className="chatFeature">
-
+                <Card>
+                       <Card.Content>
+                           <Card.Header>
+                                Messages
+                           </Card.Header>
+                       </Card.Content>
+                       <Card.Content>
+                           <Feed>
+                               {props.messages.map(msg => 
+                                <Feed.Event>
+                                    <Feed.Label image={"https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
+                                    <Feed.Content>
+                                        <Feed.Summary>
+                                            {msg.content}
+                                        </Feed.Summary>
+                                    </Feed.Content>
+                                </Feed.Event>
+                                )}
+                           </Feed>
+                       </Card.Content>
+                       <Card.Content>
+                       <form onSubmit={(e)=> submitMessage(e)}>
+                            <input name="content" type="text" placeholder="Message..."/>
+                            <button type="submit">Send</button>
+                        </form>
+                       </Card.Content>
+                   </Card>
+                    {/* <div className="messageContainer">
+                        
+                    </div>
+                    <div className="input">
+                        <form onSubmit={(e)=> submitMessage(e)}>
+                            <input name="content" type="text" placeholder="Message..."/>
+                            <button type="submit">Send</button>
+                        </form>
+                    </div> */}
             </div>
         </div>
     )
@@ -118,14 +165,17 @@ function TripContainer(props){
 const mapStateToProps = state => {
     return {
         trip: state.selectedTripReducer.trip,
-        trail: state.trailInfoReducer.trail
+        trail: state.trailInfoReducer.trail,
+        messages: state.messageReducer.messages
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         // fetchTrailData: (id) => dispatch(fetchingTrailData(id))
-        deleteTrip: (trip) => dispatch(deletingHikingTrip(trip))
+        deleteTrip: (trip) => dispatch(deletingHikingTrip(trip)),
+        loadMessages: (hiking_trip_id) => dispatch(fetchingMessages(hiking_trip_id)),
+        createMessage: (content, hiking_trip_id) => dispatch(creatingMessage(content, hiking_trip_id))
     }
 }
 

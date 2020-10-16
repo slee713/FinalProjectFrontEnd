@@ -615,6 +615,45 @@ function fetchingUser(){
     }
 }
 
+function fetchedMessages(messages){
+    return {type: "LOAD_MESSAGES", payload: messages }
+}
+
+function fetchingMessages(hiking_trip_id){
+    return (dispatch) => {
+        fetch(URL + `messages?hiking_trip_id=${hiking_trip_id}`,{
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then(res => res.json())
+        .then(messages => {
+            if (messages.error)
+                alert(messages.error)
+            else 
+                dispatch(fetchedMessages(messages))
+        })
+
+    }
+}
+
+function creatingMessage(content, hiking_trip_id){
+    return (dispatch) => {
+        fetch(URL + `messages?hiking_trip_id=${hiking_trip_id}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                Authorization: `Bearer ${localStorage.token}`
+            },
+            body: JSON.stringify({
+                content
+            })
+        })
+    }
+}
+
 export { 
     fetchingHikingTrips, 
     creatingHikingTrip, 
@@ -640,5 +679,7 @@ export {
     sendingFriendRequest,
     rejectingFriendRequest,
     removingFriend,
-    fetchingUser
+    fetchingUser,
+    fetchingMessages,
+    creatingMessage
 }
