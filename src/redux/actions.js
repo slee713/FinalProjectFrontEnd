@@ -301,6 +301,7 @@ function addingFoodPlan(day, breakfast, lunch, dinner, snacks, notes, hiking_tri
                 alert(resp.error)
             else
                 dispatch(addedFoodPlan(resp))
+                console.log(resp)
         })
     }
 }

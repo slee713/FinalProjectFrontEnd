@@ -89,8 +89,9 @@ function FoodPlan(props){
                 </Table.Header>
 
                 <Table.Body>
-                    {props.foodPlans.map(item => 
-                        <Table.Row>
+                    {props.foodPlans.map(item => {
+                      if(item.user_hike.hiking_trip_id === props.trip.id){
+                        return (<Table.Row>
                             <Table.Cell>{item.day}</Table.Cell>
                             <Table.Cell>{item.breakfast}</Table.Cell>
                             <Table.Cell>{item.lunch}</Table.Cell>
@@ -101,7 +102,9 @@ function FoodPlan(props){
                                 <button onClick={() =>editBtn(item)}>Edit</button>
                                 <span><button onClick={() => deleteFoodPlan(item.id)}>Delete</button></span>
                             </Table.Cell>
-                        </Table.Row>)}
+                        </Table.Row>)
+                      }
+                    })}
                 </Table.Body>
             </Table>
         </div>
