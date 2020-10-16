@@ -674,6 +674,7 @@ function creatingMessage(content, hiking_trip_id){
 
 export { 
     fetchingHikingTrips, 
+    fetchingHikingTrip,
     creatingHikingTrip, 
     deletingHikingTrip,
     fetchingTrailData, 
