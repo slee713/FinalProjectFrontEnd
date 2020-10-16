@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import './TripContainer.css'
-import { fetchingTrailData, deletingHikingTrip, fetchingMessages, creatingMessage } from '../redux/actions'
+import { fetchingTrailData, deletingHikingTrip, fetchingHikingTrip, fetchingMessages, creatingMessage } from '../redux/actions'
 import TrailInfo from '../components/TrailInfo'
 import { Card, Feed, Icon, Image } from 'semantic-ui-react'
 import GearTab from '../components/GearTab'
@@ -36,6 +36,7 @@ function TripContainer(props){
         // props.fetchTrailData(props.trip.hiking_project_id)
         let load = setInterval(()=>{
             props.loadMessages(id)
+            props.loadHikingTrip(id)
         }, 1000)
 
         return () => {
@@ -174,6 +175,7 @@ const mapDispatchToProps = dispatch => {
     return {
         // fetchTrailData: (id) => dispatch(fetchingTrailData(id))
         deleteTrip: (trip) => dispatch(deletingHikingTrip(trip)),
+        loadHikingTrip: (id) => dispatch(fetchingHikingTrip(id)),
         loadMessages: (hiking_trip_id) => dispatch(fetchingMessages(hiking_trip_id)),
         createMessage: (content, hiking_trip_id) => dispatch(creatingMessage(content, hiking_trip_id))
     }

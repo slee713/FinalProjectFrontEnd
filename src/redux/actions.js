@@ -20,6 +20,24 @@ function fetchingHikingTrips(){
     }
 }
 
+function fetchingHikingTrip(id){
+    return (dispatch) => {
+        fetch(URL + `hiking_trips/${id}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then(res => res.json())
+        .then(hikingTrip => {
+            if (hikingTrip.error)
+                alert(hikingTrip.error)
+            else
+                dispatch(setSelectedTrip(hikingTrip))
+        })
+    }
+}
+
 function setSelectedTrip(hiking_trip){
     return {type: "SELECT_TRIP", payload: hiking_trip}
 }
