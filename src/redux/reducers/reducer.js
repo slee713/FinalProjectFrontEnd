@@ -7,6 +7,7 @@ import friendRequestReducer from './friendRequestReducer'
 import allUserReducer from './allUserReducer'
 import messageReducer from './messageReducer'
 import friendTripsReducer from './friendTripsReducer'
+import hikingTrailsReducer from './hikingTrailsReducer'
 import {combineReducers} from 'redux'
 
 let initialState = { loggedIn: false, user: {}}
@@ -142,7 +143,8 @@ const appReducer = combineReducers({
     friendRequestReducer,
     allUserReducer,
     messageReducer,
-    friendTripsReducer
+    friendTripsReducer,
+    hikingTrailsReducer,
  })
 
  const rootReducer = (state,action) => {

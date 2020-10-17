@@ -5,8 +5,12 @@ import {
     Marker,
     InfoWindow
 } from '@react-google-maps/api'
+import { useSelector, useDispatch } from 'react-redux'
 import TrailSearch from '../components/TrailSearch'
 import HikingTrailsCollection from '../containers/HikingTrailsCollection'
+import {
+    fetchingTrails
+} from '../redux/actions'
 import tempData from '../tempData'
 
 const libraries = ["places"]
@@ -21,10 +25,15 @@ function HikingTrailsContainer(props){
         libraries
     })
     const [mapView, setMapView] = React.useState(false)
-    const [hikingTrails, setHikingTrails] = React.useState(tempData.trails)
+    const [lat , setLat] = React.useState(null)
+    const [lng, setLng] = React.useState(null)
+    const dispatch = useDispatch()
+    const hikingTrails = useSelector(state => state.hikingTrailsReducer.trails)
 
     const searchResults = (lat, lng) => {
-        console.log(tempData)
+        setLat(lat)
+        setLng(lng)
+        dispatch(fetchingTrails(lat, lng))
     }
 
     const list= () => {
@@ -49,8 +58,8 @@ function HikingTrailsContainer(props){
     }, [])
 
     const center = {
-        lat: 39.9527,
-        lng: -105.2313
+        lat: lat,
+        lng: lng
     }
 
     if(loadError) return "Error Loading Map"

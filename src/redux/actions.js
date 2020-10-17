@@ -102,13 +102,32 @@ function loadTrailData(trail){
 
 function fetchingTrailData(hiking_project_id){
     return (dispatch) => {
-        fetch(HikingProjURL+`${hiking_project_id}&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
-        .then(res => res.json())
-        .then(resp => {
-            dispatch(loadTrailData(resp.trails[0]))
-        })
+        // fetch(HikingProjURL+`${hiking_project_id}&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
+        // .then(res => res.json())
+        // .then(resp => {
+        //     dispatch(loadTrailData(resp.trails[0]))
+        // })
     }
 }
+
+function loadTrails(trails){
+    return {type: "LOAD_TRAILS", payload: trails}
+}
+
+function fetchingTrails(lat, long){
+    return (dispatch) => {
+        // fetch(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${long}&maxResults=30&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
+        // .then(res => res.json())
+        // .then(resp => {
+        //     if (resp.trails.length === 0)
+        //         alert("No Trails Found in This Area")
+        //     else
+        //         dispatch(loadTrails(resp.trails))
+        // })
+    }
+}
+
+
 
 function updateHikingTripInfo(hiking_trip){
     return {type: "UPDATED_TRIP", payload: hiking_trip}
@@ -729,5 +748,6 @@ export {
     fetchingUser,
     fetchingMessages,
     creatingMessage,
-    fetchingFriendsTrips
+    fetchingFriendsTrips,
+    fetchingTrails
 }
