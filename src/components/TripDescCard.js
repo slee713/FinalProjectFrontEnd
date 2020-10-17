@@ -1,10 +1,20 @@
-import React from 'react'
-import {Button, Header, Image, Modal} from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import NewTripForm from './NewTripForm'
+import React, {useEffect} from 'react'
+import {Button, Header, Image, Modal, Card} from 'semantic-ui-react'
+import { useSelector , useDispatch } from 'react-redux'
+import {
+    fetchingTrailData
+} from '../redux/actions'
 
-function TrailDescCard(props){
+function TripDescCard(props){
     const [open, setOpen] = React.useState(false)
+
+    const trail = useSelector(state => state.trailInfoReducer.trail)
+    const dispatch = useDispatch()
+
+    const loadTrail = (id) => {
+        dispatch(fetchingTrailData(id))
+   }
+
     const {id, 
         name, 
         stars, 
@@ -21,14 +31,29 @@ function TrailDescCard(props){
         conditionDetails,
         conditionDate, 
         url
-} = props.trail
+} = trail
 
     return(
         <Modal
             onClose={()=>setOpen(false)}
-            onOpen={()=> setOpen(true)}
+            onOpen={()=> {
+                setOpen(true)
+                loadTrail(props.trip.hiking_project_id)
+            }
+            }
             open={open}
-            trigger={<Button>More Info</Button>}
+            trigger={
+               <Card>
+                   <Card.Content >
+                       <Card.Header>{props.trip.name}</Card.Header>
+                       <Card.Description>
+                           <p>Start Date: {props.trip.start_date}</p>
+                           <p>End Date: {props.trip.end_date}</p>
+                           <p>Members: {props.trip.users.map(user => `${user.first_name} ${user.last_name},`)}</p>
+                       </Card.Description>
+                    </Card.Content>
+               </Card>
+            }
         >
             <Modal.Header>{name}</Modal.Header>
             <Modal.Content image>
@@ -44,22 +69,10 @@ function TrailDescCard(props){
                     <p>Condition: {conditionStatus}, {conditionDetails} - {conditionDate}</p>
                 </Modal.Description>
             </Modal.Content>
-            <Modal.Actions>
-                <div className="buttons">
-                    {props.logged_in ? 
-                    <NewTripForm trail={props.trail}/> : null}
-                    <button></button>
-                </div>
-                
-            </Modal.Actions>
         </Modal>
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        logged_in: state.loginReducer.logged_in
-    }
-}
 
-export default connect(mapStateToProps)(TrailDescCard)
+
+export default TripDescCard

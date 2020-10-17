@@ -9,20 +9,26 @@ import {
     sendingFriendRequest,
     rejectingFriendRequest,
     removingFriend,
-    fetchingUser 
+    fetchingUser,
+    fetchingFriendsTrips,
+    fetchingTrailData
 } from '../redux/actions'
 import './ProfilePage.css'
+import TripDescCard from '../components/TripDescCard'
+
 function ProfilePage(props){
 
     const user = useSelector(state => state.loginReducer.user)
     const friendRequests = useSelector(state => state.friendRequestReducer.friendRequests)
     const users = useSelector(state => state.allUserReducer.users)
+    const friendsTrips = useSelector(state => state.friendTripsReducer.friendsTrips)
 
    const dispatch = useDispatch()
 
     useEffect(()=> {
         // props.loadUsers()
         // props.loadFriendRequests()
+        props.loadFriendTrips()
         let update = setInterval(()=>{
             props.loadUser()
             props.loadUsers()
@@ -56,6 +62,8 @@ function ProfilePage(props){
    const removeFriend = (friend) => {
         dispatch(removingFriend(friend))
    }
+
+  
     return(
         <div className="profile">
            <div className="userInfo">
@@ -69,7 +77,7 @@ function ProfilePage(props){
            <div className="newsfeed">
                <h2>Friend's Upcoming Trips</h2>
                 <div>
-
+                    {friendsTrips.map(trip => <TripDescCard key={trip.id} trip={trip} />)}
                 </div>
            </div>
            <div className="users">
@@ -159,7 +167,8 @@ const mapDispatchToProps = dispatch => {
     return {
         loadFriendRequests: () => dispatch(fetchingFriendRequests()),
         loadUsers: () => dispatch(fetchingUsers()),
-        loadUser: () => dispatch(fetchingUser())
+        loadUser: () => dispatch(fetchingUser()),
+        loadFriendTrips: () => dispatch(fetchingFriendsTrips())
     }
 }
 

@@ -6,6 +6,7 @@ import trailInfoReducer from './trailInfoReducer'
 import friendRequestReducer from './friendRequestReducer'
 import allUserReducer from './allUserReducer'
 import messageReducer from './messageReducer'
+import friendTripsReducer from './friendTripsReducer'
 import {combineReducers} from 'redux'
 
 let initialState = { loggedIn: false, user: {}}
@@ -140,7 +141,8 @@ const appReducer = combineReducers({
     trailInfoReducer,
     friendRequestReducer,
     allUserReducer,
-    messageReducer
+    messageReducer,
+    friendTripsReducer
  })
 
  const rootReducer = (state,action) => {

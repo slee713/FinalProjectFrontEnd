@@ -102,11 +102,11 @@ function loadTrailData(trail){
 
 function fetchingTrailData(hiking_project_id){
     return (dispatch) => {
-        // fetch(HikingProjURL+`${hiking_project_id}&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
-        // .then(res => res.json())
-        // .then(resp => {
-        //     dispatch(loadTrailData(resp.trails[0]))
-        // })
+        fetch(HikingProjURL+`${hiking_project_id}&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
+        .then(res => res.json())
+        .then(resp => {
+            dispatch(loadTrailData(resp.trails[0]))
+        })
     }
 }
 
@@ -681,6 +681,25 @@ function creatingMessage(content, hiking_trip_id){
     }
 }
 
+function loadFriendsTrips(trips){
+    return { type: "LOAD_FRIENDS_TRIPS", payload: trips}
+}
+
+function fetchingFriendsTrips(){
+    return (dispatch) => {
+        fetch(URL +`friendsTrips`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then(res => res.json())
+        .then(trips => {
+            dispatch(loadFriendsTrips(trips))
+        })
+    }
+}
+
 export { 
     fetchingHikingTrips, 
     fetchingHikingTrip,
@@ -709,5 +728,6 @@ export {
     removingFriend,
     fetchingUser,
     fetchingMessages,
-    creatingMessage
+    creatingMessage,
+    fetchingFriendsTrips
 }

@@ -33,7 +33,7 @@ function TripContainer(props){
     const {latitude , longitude, location } = props.trail
 
     useEffect(()=>{
-        // props.fetchTrailData(props.trip.hiking_project_id)
+        props.fetchTrailData(props.trip.hiking_project_id)
         let load = setInterval(()=>{
             props.loadMessages(id)
             // props.loadHikingTrip(id)
@@ -41,6 +41,7 @@ function TripContainer(props){
 
         return () => {
             clearInterval(load)
+            props.resetTrail()
         }
     }, [])
 
@@ -173,11 +174,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // fetchTrailData: (id) => dispatch(fetchingTrailData(id))
+        fetchTrailData: (id) => dispatch(fetchingTrailData(id)),
         deleteTrip: (trip) => dispatch(deletingHikingTrip(trip)),
         loadHikingTrip: (id) => dispatch(fetchingHikingTrip(id)),
         loadMessages: (hiking_trip_id) => dispatch(fetchingMessages(hiking_trip_id)),
-        createMessage: (content, hiking_trip_id) => dispatch(creatingMessage(content, hiking_trip_id))
+        createMessage: (content, hiking_trip_id) => dispatch(creatingMessage(content, hiking_trip_id)),
+        resetTrail: () => dispatch({type: "RESET_TRAIL"})
     }
 }
 

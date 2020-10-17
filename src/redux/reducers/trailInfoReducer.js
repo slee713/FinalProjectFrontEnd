@@ -5,6 +5,11 @@ let trailInfoReducer = (state = {trail: {}}, action ) => {
                 ...state,
                 trail: action.payload
             }
+        case "RESET_TRAIL":
+            return {
+                ...state,
+                trail: {}
+            }
         default:
             return state
     }
