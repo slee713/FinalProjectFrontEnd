@@ -14,6 +14,9 @@ function TripDescCard(props){
     const loadTrail = (id) => {
         dispatch(fetchingTrailData(id))
    }
+   const resetTrail = () => {
+       dispatch({type: "RESET_TRAIL"})
+   }
 
     const {id, 
         name, 
@@ -35,11 +38,15 @@ function TripDescCard(props){
 
     return(
         <Modal
-            onClose={()=>setOpen(false)}
+            onClose={()=>{
+                setOpen(false)
+                resetTrail()
+                }
+            }
             onOpen={()=> {
                 setOpen(true)
                 loadTrail(props.trip.hiking_project_id)
-            }
+                }
             }
             open={open}
             trigger={
