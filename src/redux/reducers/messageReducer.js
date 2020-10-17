@@ -4,6 +4,10 @@ let messageReducer = (state ={ messages: []}, action) => {
             return {
                 messages: action.payload
             }
+        case "ADD_MESSAGE":
+            return {
+                messages: [...state.messages, action.payload]
+            }
         default: 
             return state
     }

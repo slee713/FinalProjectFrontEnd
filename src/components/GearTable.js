@@ -68,6 +68,7 @@ function GearTable(props){
                         <Table.HeaderCell>Item</Table.HeaderCell>
                         <Table.HeaderCell>Quantity</Table.HeaderCell>
                         <Table.HeaderCell>Notes</Table.HeaderCell>
+                        {props.type === 'group' ? <Table.HeaderCell>Name</Table.HeaderCell> : null}
                         <Table.HeaderCell>Action</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
@@ -78,9 +79,13 @@ function GearTable(props){
                             <Table.Cell>{item.name}</Table.Cell>
                             <Table.Cell>{item.qty}</Table.Cell>
                             <Table.Cell>{item.notes}</Table.Cell>
+                            {props.type === 'group' ? <Table.Cell>{item.user_hike.user.first_name}</Table.Cell> : null}
                             <Table.Cell>
+                                {item.user_hike ?  item.user_hike.user_id == localStorage.id ?
                                 <span> <button onClick={()=> editButton(item)}>Edit</button>
-                               <button onClick={() => deleteItem(item.id)}>Delete</button></span>
+                               <button onClick={() => deleteItem(item.id)}>Delete</button></span> :
+                               null : <span> <button onClick={()=> editButton(item)}>Edit</button>
+                               <button onClick={() => deleteItem(item.id)}>Delete</button></span>}
                             </Table.Cell>
                         </Table.Row>
                     )}

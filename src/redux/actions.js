@@ -16,6 +16,7 @@ function fetchingHikingTrips(){
         .then(res => res.json())
         .then(hikingTrips => {
             dispatch(fetchedHikingTrips(hikingTrips))
+            console.log(hikingTrips)
         })
     }
 }
@@ -656,6 +657,10 @@ function fetchingMessages(hiking_trip_id){
     }
 }
 
+function showMessage(message){
+    return {type: "ADD_MESSAGE", payload: message}
+}
+
 function creatingMessage(content, hiking_trip_id){
     return (dispatch) => {
         fetch(URL + `messages?hiking_trip_id=${hiking_trip_id}`, {
@@ -668,6 +673,10 @@ function creatingMessage(content, hiking_trip_id){
             body: JSON.stringify({
                 content
             })
+        })
+        .then(res => res.json())
+        .then(message => {
+            dispatch(showMessage(message))
         })
     }
 }

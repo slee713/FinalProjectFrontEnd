@@ -36,7 +36,7 @@ function TripContainer(props){
         // props.fetchTrailData(props.trip.hiking_project_id)
         let load = setInterval(()=>{
             props.loadMessages(id)
-            props.loadHikingTrip(id)
+            // props.loadHikingTrip(id)
         }, 1000)
 
         return () => {

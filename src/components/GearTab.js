@@ -7,8 +7,8 @@ function GearTab (props){
 
     return (
         <div>
-            <GearTable category="Group" hikingTripID= {props.trip.id} items={props.trip.group_gear_items} />
-            <GearTable category="Personal" hikingTripID= {props.trip.id} items={props.user.personal_gear_items}/>
+            <GearTable category="Group" type="group" hikingTripID= {props.trip.id} items={props.trip.group_gear_items} />
+            <GearTable category="Personal" type="personal" hikingTripID= {props.trip.id} items={props.user.personal_gear_items}/>
         </div>
     )
 }
