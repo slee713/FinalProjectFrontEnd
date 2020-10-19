@@ -79,8 +79,9 @@ function TripContainer(props){
     if(!isLoaded) return "Loading Maps"
 
     const fetchMoreData = () => {
-        setPage(page +1 )
-        props.loadMessages(id, page)
+        
+        props.loadMessages(id, page+1)
+        setPage(page +1)
     }
 
     return(
@@ -146,7 +147,7 @@ function TripContainer(props){
                   }}>
                     <InfiniteScroll
                         dataLength={props.messages.length}
-                        next={fetchMoreData}
+                        next={() => fetchMoreData()}
                         hasMore={true}
                         style={{ display: 'flex', flexDirection: 'column-reverse' }}
                         inverse={true}
