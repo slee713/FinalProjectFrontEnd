@@ -152,14 +152,24 @@ function TripContainer(props){
                         style={{ display: 'flex', flexDirection: 'column-reverse' }}
                         inverse={true}
                         loader={<h4>Loading...</h4>}
+                        endMessage={<h4>End of Messages</h4>}
+                        height={'290px'}
                         scrollableTarget={'chat-messages'}
                     >
                         {props.messages.map(msg => 
-                            <div className="chat-message" style={ msg.user_hike.user_id !== localStorage.id ? {display: 'flex', flexDirection:  'row'} : {display:'flex', flexDirection: 'row-reverse'}}>
+                            msg.user_hike.user_id == localStorage.id ?
+                            <div className="chat-message" style={{display: 'flex', flexDirection:  'row-reverse'}}>
                                 <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
                                 <p>{msg.content}</p>
                                 <p>{msg.user_hike.user.first_name}</p>
+                            </div>:
+                            <div className="chat-message" style={{display: 'flex', flexDirection:  'row'}}>
+                            <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
+                            <p>{msg.content}</p>
+                            <p>{msg.user_hike.user.first_name}</p>
                             </div>
+
+                        
                         )}
 
                     </InfiniteScroll>
