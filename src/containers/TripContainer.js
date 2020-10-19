@@ -4,11 +4,11 @@ import { withRouter } from 'react-router-dom'
 import './TripContainer.css'
 import { fetchingTrailData, deletingHikingTrip, fetchingHikingTrip, fetchingMessages, creatingMessage } from '../redux/actions'
 import TrailInfo from '../components/TrailInfo'
-import { Card, Feed, Icon, Image } from 'semantic-ui-react'
 import GearTab from '../components/GearTab'
 import FoodPlan from '../components/FoodPlan'
 import RoutePlan from '../components/RoutePlan'
 import AddFriendTrip from '../components/AddFriendTrip'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import {
     GoogleMap,
     useLoadScript,
@@ -27,6 +27,7 @@ const libraries=['places']
 
 function TripContainer(props){
     const [view, setView] = React.useState('trail')
+    const [page, setPage] = React.useState(1)
 
     const { hiking_project_id , id,  name, start_date, end_date, description, group_gear_items, stops, users} = props.trip
 
@@ -34,14 +35,17 @@ function TripContainer(props){
 
     useEffect(()=>{
         props.fetchTrailData(props.trip.hiking_project_id)
+            props.loadMessages(id, 1)
+        
         let load = setInterval(()=>{
-            props.loadMessages(id)
+            // props.loadMessages(id, 1)
             // props.loadHikingTrip(id)
         }, 1000)
 
         return () => {
             clearInterval(load)
             props.resetTrail()
+            props.resetMessages()
         }
     }, [])
 
@@ -70,8 +74,14 @@ function TripContainer(props){
         lat: latitude,
         lng: longitude
     }
+
     if(loadError) return "Error Loading Map"
     if(!isLoaded) return "Loading Maps"
+
+    const fetchMoreData = () => {
+        setPage(page +1 )
+        props.loadMessages(id, page)
+    }
 
     return(
         <div className="body">
@@ -123,42 +133,43 @@ function TripContainer(props){
                 </div>
             </div>
             <div className="chatFeature">
-                <Card>
-                       <Card.Content>
-                           <Card.Header>
-                                Messages
-                           </Card.Header>
-                       </Card.Content>
-                       <Card.Content>
-                           <Feed>
-                               {props.messages.map(msg => 
-                                <Feed.Event>
-                                    <Feed.Label image={"https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
-                                    <Feed.Content>
-                                        <Feed.Summary>
-                                            {msg.content}
-                                        </Feed.Summary>
-                                    </Feed.Content>
-                                </Feed.Event>
-                                )}
-                           </Feed>
-                       </Card.Content>
-                       <Card.Content>
-                       <form onSubmit={(e)=> submitMessage(e)}>
-                            <input name="content" type="text" placeholder="Message..."/>
-                            <button type="submit">Send</button>
-                        </form>
-                       </Card.Content>
-                   </Card>
-                    {/* <div className="messageContainer">
-                        
-                    </div>
-                    <div className="input">
-                        <form onSubmit={(e)=> submitMessage(e)}>
-                            <input name="content" type="text" placeholder="Message..."/>
-                            <button type="submit">Send</button>
-                        </form>
-                    </div> */}
+                
+                <div className = "chat-header">
+                    Chat Room
+                </div>
+                <div className = "chat-messages"
+                style={{
+                    height: 300,
+                    overflow: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column-reverse',
+                  }}>
+                    <InfiniteScroll
+                        dataLength={props.messages.length}
+                        next={fetchMoreData}
+                        hasMore={true}
+                        style={{ display: 'flex', flexDirection: 'column-reverse' }}
+                        inverse={true}
+                        loader={<h4>Loading...</h4>}
+                        scrollableTarget={'chat-messages'}
+                    >
+                        {props.messages.map(msg => 
+                            <div className="chat-message" style={ msg.user_hike.user_id !== localStorage.id ? {display: 'flex', flexDirection:  'row'} : {display:'flex', flexDirection: 'row-reverse'}}>
+                                <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
+                                <p>{msg.content}</p>
+                                <p>{msg.user_hike.user.first_name}</p>
+                            </div>
+                        )}
+
+                    </InfiniteScroll>
+                    
+                </div>
+                <div className="chat-input">
+                    <form onSubmit={(e)=> submitMessage(e)}>
+                        <input name="content" type="text" placeholder="Message..."/>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
             </div>
         </div>
     )
@@ -177,9 +188,10 @@ const mapDispatchToProps = dispatch => {
         fetchTrailData: (id) => dispatch(fetchingTrailData(id)),
         deleteTrip: (trip) => dispatch(deletingHikingTrip(trip)),
         loadHikingTrip: (id) => dispatch(fetchingHikingTrip(id)),
-        loadMessages: (hiking_trip_id) => dispatch(fetchingMessages(hiking_trip_id)),
+        loadMessages: (hiking_trip_id, page) => dispatch(fetchingMessages(hiking_trip_id, page)),
         createMessage: (content, hiking_trip_id) => dispatch(creatingMessage(content, hiking_trip_id)),
-        resetTrail: () => dispatch({type: "RESET_TRAIL"})
+        resetTrail: () => dispatch({type: "RESET_TRAIL"}),
+        resetMessages: () => dispatch({type: "RESET_MSG"})
     }
 }
 

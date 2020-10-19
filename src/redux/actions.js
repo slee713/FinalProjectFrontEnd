@@ -16,7 +16,7 @@ function fetchingHikingTrips(){
         .then(res => res.json())
         .then(hikingTrips => {
             dispatch(fetchedHikingTrips(hikingTrips))
-            console.log(hikingTrips)
+            
         })
     }
 }
@@ -657,9 +657,9 @@ function fetchedMessages(messages){
     return {type: "LOAD_MESSAGES", payload: messages }
 }
 
-function fetchingMessages(hiking_trip_id){
+function fetchingMessages(hiking_trip_id, page){
     return (dispatch) => {
-        fetch(URL + `messages?hiking_trip_id=${hiking_trip_id}`,{
+        fetch(URL + `messages?hiking_trip_id=${hiking_trip_id}&page=${page}`,{
             method: "GET",
             headers: {
                 Authorization: `Bearer ${localStorage.token}`
@@ -671,6 +671,7 @@ function fetchingMessages(hiking_trip_id){
                 alert(messages.error)
             else 
                 dispatch(fetchedMessages(messages))
+                // console.log(messages)
         })
 
     }
