@@ -2,7 +2,13 @@ import React, { useEffect } from 'react'
 import {connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import './TripContainer.css'
-import { fetchingTrailData, deletingHikingTrip, fetchingHikingTrip, fetchingMessages, creatingMessage } from '../redux/actions'
+import { 
+    fetchingTrailData, 
+    deletingHikingTrip, 
+    fetchingHikingTrip, 
+    fetchingMessages,
+    fetchingLatestMessages, 
+    creatingMessage } from '../redux/actions'
 import TrailInfo from '../components/TrailInfo'
 import GearTab from '../components/GearTab'
 import FoodPlan from '../components/FoodPlan'
@@ -38,9 +44,9 @@ function TripContainer(props){
         props.loadMessages(id, 1)
         
         let load = setInterval(()=>{
-            // props.loadMessages(id, 1)
+            props.latestMessage(id)
             // props.loadHikingTrip(id)
-        }, 1000)
+        }, 500)
 
         return () => {
             clearInterval(load)
@@ -202,7 +208,8 @@ const mapDispatchToProps = dispatch => {
         loadMessages: (hiking_trip_id, page) => dispatch(fetchingMessages(hiking_trip_id, page)),
         createMessage: (content, hiking_trip_id) => dispatch(creatingMessage(content, hiking_trip_id)),
         resetTrail: () => dispatch({type: "RESET_TRAIL"}),
-        resetMessages: () => dispatch({type: "RESET_MSG"})
+        resetMessages: () => dispatch({type: "RESET_MSG"}),
+        latestMessage: (hiking_trip_id) => dispatch(fetchingLatestMessages(hiking_trip_id))
     }
 }
 

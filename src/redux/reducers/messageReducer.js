@@ -12,6 +12,11 @@ let messageReducer = (state ={ messages: []}, action) => {
             return {
                 messages: []
             }
+        case "ADD_LATEST":
+            if (action.payload.id !== state.messages[0].id)
+                return {
+                    messages: [action.payload, ...state.messages]
+                }
         default: 
             return state
     }

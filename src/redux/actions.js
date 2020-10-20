@@ -679,6 +679,26 @@ function fetchingMessages(hiking_trip_id, page){
     }
 }
 
+function addLatestMessage(message){
+    return {type: "ADD_LATEST", paylaod: message}
+}
+
+function fetchingLatestMessages(hiking_trip_id){
+    return (dispatch) => {
+        fetch(URL + `messages/1?hiking_trip_id=${hiking_trip_id}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then( res => res.json())
+        .then( message => {
+            dispatch(addLatestMessage(message))
+            // console.log(message)
+        })
+    }
+}
+
 function showMessage(message){
     return {type: "ADD_MESSAGE", payload: message}
 }
@@ -750,6 +770,7 @@ export {
     removingFriend,
     fetchingUser,
     fetchingMessages,
+    fetchingLatestMessages,
     creatingMessage,
     fetchingFriendsTrips,
     fetchingTrails
