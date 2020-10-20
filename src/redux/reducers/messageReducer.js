@@ -6,7 +6,7 @@ let messageReducer = (state ={ messages: []}, action) => {
             }
         case "ADD_MESSAGE":
             return {
-                messages: [action.payload, ...state.messages]
+                messages: [ ...state.messages, action.payload]
             }
         case "RESET_MSG":
             return {

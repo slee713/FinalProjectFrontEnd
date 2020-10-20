@@ -696,10 +696,10 @@ function creatingMessage(content, hiking_trip_id){
                 content
             })
         })
-        .then(res => res.json())
-        .then(message => {
-            dispatch(showMessage(message))
-        })
+        // .then(res => res.json())
+        // .then(message => {
+        //     dispatch(showMessage(message))
+        // })
     }
 }
 

@@ -35,10 +35,10 @@ function TripContainer(props){
 
     useEffect(()=>{
         // props.fetchTrailData(hiking_project_id)
-        props.loadMessages(id, 1)
+        
         
         let load = setInterval(()=>{
-            // props.loadMessages(id, 1)
+            props.loadMessages(id, 1)
             // props.loadHikingTrip(id)
         }, 1000)
 
@@ -145,7 +145,7 @@ function TripContainer(props){
                     display: 'flex',
                     flexDirection: 'column-reverse',
                   }}>
-                    <InfiniteScroll
+                    {/* <InfiniteScroll
                         dataLength={props.messages.length}
                         next={() => fetchMoreData()}
                         hasMore={true}
@@ -155,7 +155,7 @@ function TripContainer(props){
                         endMessage={<h4>End of Messages</h4>}
                         height={'290px'}
                         scrollableTarget={'chat-messages'}
-                    >
+                    > */}
                         {props.messages.map(msg => 
                             msg.user_hike.user_id == localStorage.id ?
                             <div className="chat-message" style={{display: 'flex', flexDirection:  'row-reverse'}}>
@@ -172,7 +172,7 @@ function TripContainer(props){
                         
                         )}
 
-                    </InfiniteScroll>
+                    {/* </InfiniteScroll> */}
                     
                 </div>
                 <div className="chat-input">
