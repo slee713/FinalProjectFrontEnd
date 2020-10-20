@@ -67,7 +67,7 @@ function ProfilePage(props){
        e.preventDefault()
        
        props.loadUsers(e.target.search.value)
-       e.target.reset()
+       
    }
 
   
