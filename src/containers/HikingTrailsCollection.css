@@ -1,0 +1,32 @@
+.trails-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 800px;
+    width: 80%;
+    /* overflow: auto; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.trail-card {
+    padding:10px;
+    padding-top: 10px;
+    width: 25%;
+    margin-top: 20px;
+    height: auto;
+}
+
+.card {
+    height: 260px;
+    display: flex;
+    flex-direction:column;
+    justify-self: space-between;
+}
+
+.img {
+    height: 40%;
+    width: auto;
+    overflow: hidden;
+    size: cover;
+}

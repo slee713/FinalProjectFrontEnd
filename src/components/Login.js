@@ -55,14 +55,10 @@ function Login(props){
                     <label for="password">Password</label>
                     <input id="password" type="password" name='password'/>
                 </Form.Field>
-                <Button type='submit'>Submit</Button>
+                <Button type='submit' style={{width: '100%'}}>Login</Button>
                 </Form>
             </Modal.Content>
-            <Modal.Actions>
-                <button color='green' onClick={() => setOpen(false)}>
-                    Back
-                </button>
-            </Modal.Actions>
+           
       </Modal>
     )
 }

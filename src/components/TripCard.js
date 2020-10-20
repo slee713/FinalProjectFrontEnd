@@ -12,7 +12,7 @@ function TripCard(props){
 
     return(
         <div>
-            <Card onClick={handleClick}>
+            <Card className ="trip-card" onClick={handleClick}>
                 <Card.Content>
                     <Card.Header content={props.trip.name} />
                     <Card.Meta content={props.trip.start_date} />

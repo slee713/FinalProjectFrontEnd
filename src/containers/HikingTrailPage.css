@@ -1,0 +1,36 @@
+.trail-body {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.trail-body img{
+    width: 500px; 
+    height: 400px;
+}
+
+.trail-details{
+    display:flex;
+    flex-direction: column;
+    width: 50%
+}
+
+
+
+.ascent-descent {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.max {
+    margin-left: 20%;
+}
+.total {
+    margin-left: 31%;
+}
+
+.create-trip-button{
+    float: right;
+}

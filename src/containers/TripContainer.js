@@ -8,6 +8,7 @@ import GearTab from '../components/GearTab'
 import FoodPlan from '../components/FoodPlan'
 import RoutePlan from '../components/RoutePlan'
 import AddFriendTrip from '../components/AddFriendTrip'
+import {Menu } from 'semantic-ui-react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import {
     GoogleMap,
@@ -19,8 +20,8 @@ import {
 import EditHikingTripForm from '../components/EditHikingTripForm'
 
 const mapContainerStyle = {
-    width: '40vw',
-    height: '40vh'
+    width: '15vw',
+    height: '20vh'
 }
 const libraries=['places']
 
@@ -85,17 +86,22 @@ function TripContainer(props){
     // }
 
     return(
-        <div className="body">
+        <div className="trip-body"> 
             <div className="tripInfo">
+                <div className="trip-image">
+                    <img src={props.trail.imgMedium}/>
+                </div>
                 <div className="general">
                     <div className="info">
+                       
                         <div className= 'header'>
-                            <h3>{name}</h3>
-                            <div>
+                            <h2>{name}</h2>
+                            <div className="trip-options">
+                                <AddFriendTrip />
                                 <EditHikingTripForm/>
                                 <p onClick={deleteTrip}>Delete</p>
                             </div>
-                            <AddFriendTrip />
+                            
                         </div>
                         <p>Location: {location}</p>
                         <p>Start Date: {start_date}</p>
@@ -104,26 +110,48 @@ function TripContainer(props){
                         <p>{description}</p>
                     </div>
                     <div className="maps">
-                    <GoogleMap 
-                        mapContainerStyle={mapContainerStyle} 
-                        zoom={11}
-                        center={center}
-                        onLoad={onMapLoad}
-                    >  
-                        <Marker 
-                            position={{
-                                lat: latitude,
-                                lng: longitude
-                            }}
-                        />
-                     </GoogleMap>
+                        <GoogleMap 
+                            mapContainerStyle={mapContainerStyle} 
+                            zoom={11}
+                            center={center}
+                            onLoad={onMapLoad}
+                        >  
+                            <Marker 
+                                position={{
+                                    lat: latitude,
+                                    lng: longitude
+                                }}
+                            />
+                        </GoogleMap>
                     </div>
                 </div>
                 <div className="tripNavBar">
-                    <p onClick={()=> setView('trail')}>Trail Info</p>
+                    <Menu tabular>
+                        <Menu.Item
+                            name ="Trail Info"
+                            active={view === 'trail'}
+                            onClick={()=> setView('trail')}
+                        />
+                        <Menu.Item
+                            name ="Gear List"
+                            active={view === 'gear'}
+                            onClick={()=> setView('gear')}
+                        />
+                        <Menu.Item
+                            name ="Food Plan"
+                            active={view === 'food'}
+                            onClick={()=> setView('food')}
+                        />
+                        <Menu.Item
+                            name ="Route Plan"
+                            active={view === 'route'}
+                            onClick={()=> setView('route')}
+                        />
+                    </Menu>
+                    {/* <Menu name onClick={()=> setView('trail')}>Trail Info</Menu>
                     <p onClick={()=> setView('gear')}>Gear List</p>
                     <p onClick={()=> setView('food')}>Food Plan</p>
-                    <p onClick={()=> setView('route')}>Route Plan</p>
+                    <p onClick={()=> setView('route')}>Route Plan</p> */}
                 </div>
                 <div className="displayWindow">
                     { view === 'trail' ? <TrailInfo /> :
@@ -134,13 +162,9 @@ function TripContainer(props){
                 </div>
             </div>
             <div className="chatFeature">
-                
-                <div className = "chat-header">
-                    Chat Room
-                </div>
                 <div className = "chat-messages"
                 style={{
-                    height: 300,
+                    height: '90%',
                     overflow: 'auto',
                     display: 'flex',
                     flexDirection: 'column-reverse',
@@ -161,12 +185,10 @@ function TripContainer(props){
                             <div className="chat-message" style={{display: 'flex', flexDirection:  'row-reverse'}}>
                                 <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
                                 <p>{msg.content}</p>
-                                <p>{msg.user_hike.user.first_name}</p>
                             </div>:
                             <div className="chat-message" style={{display: 'flex', flexDirection:  'row'}}>
-                            <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
-                            <p>{msg.content}</p>
-                            <p>{msg.user_hike.user.first_name}</p>
+                                <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
+                                <p>{`${msg.content} - ${msg.user_hike.user.first_name}`}</p>
                             </div>
 
                         

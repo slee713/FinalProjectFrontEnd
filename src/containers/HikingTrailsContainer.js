@@ -12,6 +12,7 @@ import {
     fetchingTrails
 } from '../redux/actions'
 import tempData from '../tempData'
+import './HikingTrailsContainer.css'
 
 const libraries = ["places"]
 const mapContainerStyle={
@@ -67,36 +68,41 @@ function HikingTrailsContainer(props){
 
     return(
         <div>
-            <TrailSearch searchResults={searchResults} panTo={panTo} />
-            <div>
-                <button onClick={list}>List</button>
-                <button onClick={map}>Map</button>
+            <div classname="search-container">
+                <TrailSearch searchResults={searchResults} panTo={panTo} />
+            
+                <div className="buttons">
+                    <button onClick={list}>List</button>
+                    <button onClick={map}>Map</button>
+                </div>
             </div>
             {mapView ? 
-            <GoogleMap 
-                mapContainerStyle={mapContainerStyle} 
-                zoom={11}
-                center={center}
-                onLoad={onMapLoad}
-            >
-                {hikingTrails.map(trail => 
-                    <Marker 
-                        key={trail.id}
-                        position={{
-                            lat: trail.latitude,
-                            lng: trail.longitude
-                        }}
-                        onClick={()=> setSelected(trail)}
-                    />)}
-                {selected ? 
-                <InfoWindow 
-                    position={{lat: parseFloat(selected.latitude), lng: parseFloat(selected.longitude)}}
-                    onCloseClick={()=> setSelected(null)}>
-                    <div>
-                        <h2>{selected.name}</h2>
-                    </div>
-                </InfoWindow> : null}
-            </GoogleMap>
+            <div className="map">
+                <GoogleMap 
+                    mapContainerStyle={mapContainerStyle} 
+                    zoom={11}
+                    center={center}
+                    onLoad={onMapLoad}
+                >
+                    {hikingTrails.map(trail => 
+                        <Marker 
+                            key={trail.id}
+                            position={{
+                                lat: trail.latitude,
+                                lng: trail.longitude
+                            }}
+                            onClick={()=> setSelected(trail)}
+                        />)}
+                    {selected ? 
+                    <InfoWindow 
+                        position={{lat: parseFloat(selected.latitude), lng: parseFloat(selected.longitude)}}
+                        onCloseClick={()=> setSelected(null)}>
+                        <div>
+                            <h2>{selected.name}</h2>
+                        </div>
+                    </InfoWindow> : null}
+                </GoogleMap>
+            </div>
             :
             <HikingTrailsCollection hikingTrails={hikingTrails}/>
             }
