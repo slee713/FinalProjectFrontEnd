@@ -19,12 +19,12 @@ function NewTripForm(props) {
         if(e.target.start_date.value < todaysDate){
             alert("Starting date cannot be before today's date.")
         }
-        if(e.target.end_date.value < e.target.start_date.value)
+        else if(e.target.end_date.value < e.target.start_date.value)
             alert("End Date must be after Start Date")
         else {
             setOpen(false)
             props.setSelectTrip(e, id)
-            props.history.push(`/mytrips/${id}`)
+            props.history.push(`/mytrips`)
         }
     }
 

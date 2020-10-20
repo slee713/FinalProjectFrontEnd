@@ -48,9 +48,10 @@ let selectedTripReducer = (state = {trip: {}}, action ) => {
             }
             return state
         case 'DELETE_GROUP_ITEM':
+            let group_items = [...state.trip.group_gear_items.filter(item => item.id !== action.payload)]
             state = {
                 trip :{...state.trip,
-                    group_gear_items: [...state.trip.group_gear_items.filter(item => item.id !== action.payload)]
+                    group_gear_items: [...group_items]
                 }
             }
             return state

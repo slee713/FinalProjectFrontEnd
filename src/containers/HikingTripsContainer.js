@@ -1,12 +1,20 @@
 import React, { useEffect } from 'react' 
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import {fetchingHikingTrips} from '../redux/actions'
 import TripCard from '../components/TripCard'
 
 function HikingTripsContainer(props){
 
+    const dispatch = useDispatch()
+
     useEffect(()=>{
-        props.fetchingHikingTrips()
+        let fetchingTrips = setInterval(()=>{
+            props.fetchingHikingTrips()
+        }, 1000)
+
+        return () => {
+            clearInterval(fetchingTrips)
+        }
     }, [])
 
    

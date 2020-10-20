@@ -144,7 +144,7 @@ function ProfilePage(props){
                     <Card>
                        <Card.Content>
                            <Card.Header>
-                                Users
+                                Search 
                            </Card.Header>
                        </Card.Content>
                         <Card.Content>

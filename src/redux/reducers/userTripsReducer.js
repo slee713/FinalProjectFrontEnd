@@ -6,10 +6,17 @@ let userTripsReducer = (state = {trips: []}, action) => {
                 trips: action.payload
             }
         case "DELETE_TRIP_FROM_LIST":
-            return{
+            state = {
                 ...state,
-                trips: [...state.trips.filter(trip => trip.id !== action.payload.id)]
+                trips: [...state.trips.filter(trip => trip.id !== action.payload)]
             }
+            return state
+
+        case "RESET_TRIPS":
+            state = {
+                trips: []
+            }
+            return state
         default:
             return state
     }

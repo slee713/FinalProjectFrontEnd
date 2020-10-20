@@ -34,8 +34,8 @@ function TripContainer(props){
     const {latitude , longitude, location } = props.trail
 
     useEffect(()=>{
-        props.fetchTrailData(props.trip.hiking_project_id)
-            props.loadMessages(id, 1)
+        // props.fetchTrailData(hiking_project_id)
+        props.loadMessages(id, 1)
         
         let load = setInterval(()=>{
             // props.loadMessages(id, 1)

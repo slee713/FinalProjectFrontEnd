@@ -39,6 +39,8 @@ function fetchingHikingTrip(id){
     }
 }
 
+
+
 function setSelectedTrip(hiking_trip){
     return {type: "SELECT_TRIP", payload: hiking_trip}
 }
@@ -76,8 +78,8 @@ function deletedHikingTrip(){
     return{type: "DELETE_TRIP"}
 }
 
-function deleteTripFromList(trip){
-    return {type: "DELETE_TRIP_FROM_LIST", payload: trip}
+function deleteTripFromList(id){
+    return {type: "DELETE_TRIP_FROM_LIST", payload: id}
 }
 
 function deletingHikingTrip(trip){
@@ -90,7 +92,7 @@ function deletingHikingTrip(trip){
         })
         .then( () => {
             dispatch(deletedHikingTrip)
-            dispatch(deleteTripFromList(trip))
+            dispatch(deleteTripFromList(trip.id))
         })
     }
 }
@@ -102,11 +104,11 @@ function loadTrailData(trail){
 
 function fetchingTrailData(hiking_project_id){
     return (dispatch) => {
-        // fetch(HikingProjURL+`${hiking_project_id}&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
-        // .then(res => res.json())
-        // .then(resp => {
-        //     dispatch(loadTrailData(resp.trails[0]))
-        // })
+        fetch(HikingProjURL+`${hiking_project_id}&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
+        .then(res => res.json())
+        .then(resp => {
+            dispatch(loadTrailData(resp.trails[0]))
+        })
     }
 }
 
@@ -116,14 +118,14 @@ function loadTrails(trails){
 
 function fetchingTrails(lat, long){
     return (dispatch) => {
-        // fetch(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${long}&maxResults=30&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
-        // .then(res => res.json())
-        // .then(resp => {
-        //     if (resp.trails.length === 0)
-        //         alert("No Trails Found in This Area")
-        //     else
-        //         dispatch(loadTrails(resp.trails))
-        // })
+        fetch(`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${long}&maxResults=30&key=${process.env.REACT_APP_HIKING_PROJECT_API}`)
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.trails.length === 0)
+                alert("No Trails Found in This Area")
+            else
+                dispatch(loadTrails(resp.trails))
+        })
     }
 }
 
