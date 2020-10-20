@@ -31,7 +31,7 @@ function ProfilePage(props){
         props.loadFriendTrips()
         let update = setInterval(()=>{
             props.loadUser()
-            props.loadUsers()
+            // // props.loadUsers()
             props.loadFriendRequests()
         }, 1000)
 
@@ -61,6 +61,13 @@ function ProfilePage(props){
 
    const removeFriend = (friend) => {
         dispatch(removingFriend(friend))
+   }
+
+   const searchUsers = (e) => {
+       e.preventDefault()
+       
+       props.loadUsers(e.target.search.value)
+       e.target.reset()
    }
 
   
@@ -140,6 +147,12 @@ function ProfilePage(props){
                                 Users
                            </Card.Header>
                        </Card.Content>
+                        <Card.Content>
+                            <form onSubmit={(e) => searchUsers(e)}>
+                                <input type="text" name="search"/>
+                                <button type="submit">Search</button>
+                            </form>
+                        </Card.Content>
                        <Card.Content>
                            <Feed>
                                {users.map(aUser => 
@@ -166,7 +179,7 @@ function ProfilePage(props){
 const mapDispatchToProps = dispatch => {
     return {
         loadFriendRequests: () => dispatch(fetchingFriendRequests()),
-        loadUsers: () => dispatch(fetchingUsers()),
+        loadUsers: (search) => dispatch(fetchingUsers(search)),
         loadUser: () => dispatch(fetchingUser()),
         loadFriendTrips: () => dispatch(fetchingFriendsTrips())
     }

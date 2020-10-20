@@ -524,9 +524,9 @@ function fetchedUsers(users){
     return {type: "ALL_USERS", payload: users}
 }
 
-function fetchingUsers(){
+function fetchingUsers(search){
     return (dispatch) => {
-        fetch(URL + 'users', {
+        fetch(URL + `users?search=${search}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${localStorage.token}`
@@ -538,7 +538,7 @@ function fetchingUsers(){
                 alert(resp.error)
             else
                 dispatch(fetchedUsers(resp))
-            
+                // console.log(resp)
         })
     }
 }
@@ -615,9 +615,9 @@ function removeFriend(friend){
     return {type: "REMOVE_FRIEND", payload: friend}
 }
 
-function addToUsers(friend){
-    return {type: "ADD_USER", payload: friend}
-}
+// function addToUsers(friend){
+//     return {type: "ADD_USER", payload: friend}
+// }
 
 function removingFriend(friend){
     return (dispatch) => {
@@ -629,7 +629,7 @@ function removingFriend(friend){
         })
         .then(() => {
             dispatch(removeFriend(friend))
-            dispatch(addToUsers(friend))
+            // dispatch(addToUsers(friend))
         })
     }
 }
