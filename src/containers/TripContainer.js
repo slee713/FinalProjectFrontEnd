@@ -41,18 +41,31 @@ function TripContainer(props){
 
     useEffect(()=>{
         // props.fetchTrailData(hiking_project_id)
-        props.loadMessages(id, 1)
+        // props.loadMessages(id, 1)
+        // let recentMessage = setTimeout(() => {
+        //     setInterval(() => {
+        //         props.latestMessage(id)
+        //     },2000)
+        // },1000)
+
         
         let load = setInterval(()=>{
-            props.latestMessage(id)
+            props.loadMessages(id,1)
             // props.loadHikingTrip(id)
         }, 500)
+        
+
+       
+        
 
         return () => {
             clearInterval(load)
+            // clearTimeout(recentMessage)
             props.resetTrail()
             props.resetMessages()
         }
+
+        
     }, [])
 
     const {isLoaded, loadError} = useLoadScript({

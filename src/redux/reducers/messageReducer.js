@@ -2,6 +2,11 @@ let messageReducer = (state ={ messages: []}, action) => {
     switch(action.type){
         case "LOAD_MESSAGES":
             return {
+                // messages: [...state.messages, ...action.payload]
+                messages: [...action.payload]
+            }
+        case "PREVIOUS_MESSAGE":
+            return{
                 messages: [...state.messages, ...action.payload]
             }
         case "ADD_MESSAGE":
@@ -12,11 +17,13 @@ let messageReducer = (state ={ messages: []}, action) => {
             return {
                 messages: []
             }
-        case "ADD_LATEST":
-            if (action.payload.id !== state.messages[0].id)
-                return {
-                    messages: [action.payload, ...state.messages]
-                }
+        // case "ADD_LATEST":
+            
+        //     if (action.payload.id !== state.messages[0].id) {
+        //         return {
+        //             messages: [action.payload, ...state.messages]
+        //         }
+        //     }
         default: 
             return state
     }

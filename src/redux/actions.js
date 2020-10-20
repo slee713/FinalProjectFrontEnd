@@ -659,6 +659,10 @@ function fetchedMessages(messages){
     return {type: "LOAD_MESSAGES", payload: messages }
 }
 
+function previousMessages(messages){
+    return {type: "PREVIOUS_MESSAGE", payload: messages}
+}
+
 function fetchingMessages(hiking_trip_id, page){
     return (dispatch) => {
         fetch(URL + `messages?hiking_trip_id=${hiking_trip_id}&page=${page}`,{
@@ -671,9 +675,13 @@ function fetchingMessages(hiking_trip_id, page){
         .then(messages => {
             if (messages.error)
                 alert(messages.error)
-            else 
+            else {
+                if (page === 1)
                 dispatch(fetchedMessages(messages))
+                else
+                dispatch(previousMessages(messages))
                 // console.log(messages)
+            }
         })
 
     }
