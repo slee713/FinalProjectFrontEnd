@@ -27,7 +27,7 @@ const libraries=['places']
 
 function TripContainer(props){
     const [view, setView] = React.useState('trail')
-    const [page, setPage] = React.useState(1)
+    // const [page, setPage] = React.useState(1)
 
     const { hiking_project_id , id,  name, start_date, end_date, description, group_gear_items, stops, users} = props.trip
 
@@ -35,10 +35,10 @@ function TripContainer(props){
 
     useEffect(()=>{
         // props.fetchTrailData(hiking_project_id)
-        props.loadMessages(id, 1)
+        // props.loadMessages(id)
         
         let load = setInterval(()=>{
-            // props.loadMessages(id, 1)
+            props.loadMessages(id)
             // props.loadHikingTrip(id)
         }, 1000)
 
@@ -78,11 +78,11 @@ function TripContainer(props){
     if(loadError) return "Error Loading Map"
     if(!isLoaded) return "Loading Maps"
 
-    const fetchMoreData = () => {
+    // const fetchMoreData = () => {
         
-        props.loadMessages(id, page+1)
-        setPage(page +1)
-    }
+    //     props.loadMessages(id, page+1)
+    //     setPage(page +1)
+    // }
 
     return(
         <div className="body">
@@ -145,7 +145,7 @@ function TripContainer(props){
                     display: 'flex',
                     flexDirection: 'column-reverse',
                   }}>
-                    <InfiniteScroll
+                    {/* <InfiniteScroll
                         dataLength={props.messages.length}
                         next={() => fetchMoreData()}
                         hasMore={true}
@@ -155,7 +155,7 @@ function TripContainer(props){
                         endMessage={<h4>End of Messages</h4>}
                         height={'290px'}
                         scrollableTarget={'chat-messages'}
-                    >
+                    > */}
                         {props.messages.map(msg => 
                             msg.user_hike.user_id == localStorage.id ?
                             <div className="chat-message" style={{display: 'flex', flexDirection:  'row-reverse'}}>
@@ -172,7 +172,7 @@ function TripContainer(props){
                         
                         )}
 
-                    </InfiniteScroll>
+                    {/* </InfiniteScroll> */}
                     
                 </div>
                 <div className="chat-input">

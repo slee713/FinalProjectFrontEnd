@@ -659,9 +659,9 @@ function fetchedMessages(messages){
     return {type: "LOAD_MESSAGES", payload: messages }
 }
 
-function fetchingMessages(hiking_trip_id, page){
+function fetchingMessages(hiking_trip_id){
     return (dispatch) => {
-        fetch(URL + `messages?hiking_trip_id=${hiking_trip_id}&page=${page}`,{
+        fetch(URL + `messages?hiking_trip_id=${hiking_trip_id}`,{
             method: "GET",
             headers: {
                 Authorization: `Bearer ${localStorage.token}`

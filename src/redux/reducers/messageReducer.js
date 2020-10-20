@@ -2,7 +2,7 @@ let messageReducer = (state ={ messages: []}, action) => {
     switch(action.type){
         case "LOAD_MESSAGES":
             return {
-                messages: [...state.messages, ...action.payload]
+                messages: [ ...action.payload]
             }
         case "ADD_MESSAGE":
             return {
