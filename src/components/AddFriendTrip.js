@@ -44,9 +44,9 @@ function AddFriendTrip(){
             onOpen={()=> setOpen(true)}
             size={'mini'}
             open={open}
-            trigger={<p>Invite Friends</p>}
+            trigger={<p>Add Friends</p>}
         >
-            <Modal.Header>Invite Friends</Modal.Header>
+            <Modal.Header>Add Friends</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={(e) => submit(e)}>
                     <Select 
@@ -57,7 +57,7 @@ function AddFriendTrip(){
                         classNamePrefix='select'
                         onChange={handleChange}
                         />
-                    <Button type="submit" style={{width: '100%', 'background-color': '#438f44', color: 'black'}}>Invite to Trip</Button>
+                    <Button type="submit" style={{width: '100%', 'background-color': '#438f44', color: 'black'}}>Add to Trip</Button>
                 </Form>
             </Modal.Content>
         </Modal>

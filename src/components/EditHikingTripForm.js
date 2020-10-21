@@ -27,6 +27,7 @@ function EditHikingTripForm(props){
             onClose={()=>setOpen(false)}
             onOpen={()=> setOpen(true)}
             open={open}
+            size={'small'}
             trigger={<p>Edit</p>}
         >
             <Modal.Header>Edit Hiking Trip</Modal.Header>
@@ -53,7 +54,7 @@ function EditHikingTripForm(props){
                     <Form.Field>
                         <Form.TextArea label="Description" name='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
                     </Form.Field>
-                    <Button type="submit">Update Information</Button>
+                    <Button type="submit" style={{width: '100%', 'background-color': '#438f44', color: 'black'}}>Update Information</Button>
                 </Form>
             </Modal.Content>
         </Modal>

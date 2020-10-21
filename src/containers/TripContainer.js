@@ -17,6 +17,7 @@ import {
     InfoWindow
 } from '@react-google-maps/api'
 import MembersList from '../components/MembersList'
+import DeleteTripModal from '../components/DeleteTripModal'
 
 import EditHikingTripForm from '../components/EditHikingTripForm'
 
@@ -56,10 +57,10 @@ function TripContainer(props){
         libraries
     })
     
-    const deleteTrip = () => {
-        props.deleteTrip(props.trip)
-        props.history.push('/mytrips')
-    }
+    // const deleteTrip = () => {
+    //     props.deleteTrip(props.trip)
+    //     props.history.push('/mytrips')
+    // }
 
     const submitMessage = (e) => {
         e.preventDefault()
@@ -97,7 +98,7 @@ function TripContainer(props){
                             <div className="trip-options">
                                     <AddFriendTrip />
                                     <EditHikingTripForm/>
-                                    <p onClick={deleteTrip}>Delete</p>
+                                    <DeleteTripModal />
                             </div>    
                         </div>
                         <div className = 'trip-details'>
