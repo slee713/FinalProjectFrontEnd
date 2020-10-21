@@ -24,7 +24,8 @@ function NewTripForm(props) {
         else {
             setOpen(false)
             props.setSelectTrip(e,  id, props.trail.imgMedium)
-            props.history.push(`/mytrips`)
+            setTimeout(()=> props.history.push(`/mytrips/${id}`), 500)
+            // props.history.push(`/mytrips`)
         }
     }
 

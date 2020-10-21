@@ -39,7 +39,7 @@ function TrailInfo(props) {
                         <p><strong>Difficulty:</strong> {difficulty}</p>
                         <p ><strong>Descent:</strong> {descent} FT </p>
                         <p ><strong>Lowest Elevation: </strong>{low} FT</p>
-                        <br/>
+                        <br/><br/>
                         <p><strong>Last Reported: </strong>{conditionDate}</p>
                     </div>
                 </div>
