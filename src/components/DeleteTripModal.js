@@ -32,7 +32,7 @@ function DeleteTripModal(props){
             <Modal.Content>
                 <h2>Are you sure you want to delete this hiking trip?</h2>
                 <div className = "buttons">
-                    <button onClick={confirm}>Yes</button>
+                    <button onClick={confirm} style={{backgroundColor: 'red'}}>Yes</button>
                     <button onClick={decline}>No</button>
                 </div>
             </Modal.Content>

@@ -31,9 +31,9 @@ function DeleteUserModal(props){
         trigger={<p>Delete Account</p>}
         >
             <Modal.Content>
-                <h2>Are you sure you want to delete your account?</h2>
+                <h2 style={{textAlign: 'center'}}>Are you sure you want to delete your account?</h2>
                 <div className="buttons">
-                    <button onClick={confirm}>Yes</button>
+                    <button onClick={confirm} style={{backgroundColor: 'red'}}>Yes</button>
                     <button onClick={decline}>No</button>
                 </div>
             </Modal.Content>
