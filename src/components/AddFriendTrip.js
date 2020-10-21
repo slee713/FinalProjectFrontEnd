@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Modal, Header, Form, Button, Dropdown} from 'semantic-ui-react'
+import Select from 'react-select'
 import {  addingFriendToTrip } from '../redux/actions'
 function AddFriendTrip(){
 
@@ -16,7 +17,8 @@ function AddFriendTrip(){
     const nonMembers = user.friends.filter(friend => !tripMembers.includes(friend.id))
 
     const options = nonMembers.map(member => {
-        return({key: member.id, text: member.first_name, value: member})
+        // return({key: member.id, text: member.first_name, value: member})
+        return({key: member.id, label: member.first_name, value: member})
     })
 
     const submit = (e) => {
@@ -29,9 +31,9 @@ function AddFriendTrip(){
     }
 
     const handleChange = (event, data) => {
-       
-       let friends = [...data.value]
-       setAddedFriends(friends)
+       let invited = [...addedFriends, data.option.value]
+    //    
+       setAddedFriends(invited)
         
     }
     
@@ -40,21 +42,22 @@ function AddFriendTrip(){
         <Modal 
             onClose={() => setOpen(false)}
             onOpen={()=> setOpen(true)}
+            size={'mini'}
             open={open}
             trigger={<p>Invite Friends</p>}
         >
             <Modal.Header>Invite Friends</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={(e) => submit(e)}>
-                    <label>Select Friends</label>
-                    <Dropdown 
-                        placeholder="friends" 
-                        name="friends" 
-                        fluid multiple selection search 
+                    <Select 
+                        isMulti
+                        name="friends"
                         options={options}
+                        className='basic-multi-select'
+                        classNamePrefix='select'
                         onChange={handleChange}
-                    />
-                    <Button type="submit">Invite to Trip</Button>
+                        />
+                    <Button type="submit" style={{width: '100%', 'background-color': '#438f44', color: 'black'}}>Invite to Trip</Button>
                 </Form>
             </Modal.Content>
         </Modal>
