@@ -47,7 +47,7 @@ function setSelectedTrip(hiking_trip){
 
 
 
-function creatingHikingTrip(e, id){
+function creatingHikingTrip(e, id, img){
     return (dispatch) => {
         fetch(URL+'/hiking_trips', {
             method: "POST",
@@ -58,6 +58,7 @@ function creatingHikingTrip(e, id){
             },
             body: JSON.stringify({
                 hiking_project_id: id,
+                img: img,
                 name: e.target.name.value,
                 start_date: e.target.start_date.value,
                 end_date: e.target.end_date.value,

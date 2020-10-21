@@ -23,7 +23,7 @@ function NewTripForm(props) {
             alert("End Date must be after Start Date")
         else {
             setOpen(false)
-            props.setSelectTrip(e, id)
+            props.setSelectTrip(e,  id, props.trail.imgMedium)
             props.history.push(`/mytrips`)
         }
     }
@@ -63,13 +63,13 @@ function NewTripForm(props) {
 
 const mapStateToProps = state => {
     return {
-        url: state.urlReducer.URL
+        trail: state.selectedTrailReducer.selectedTrail
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        setSelectTrip: (e, id) => dispatch(creatingHikingTrip(e, id))
+        setSelectTrip: (e, id,img) => dispatch(creatingHikingTrip(e, id,img))
     }
 }
 
