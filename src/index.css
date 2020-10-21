@@ -24,9 +24,18 @@ code {
   color: red
 }
 
+.chat-message{
+  margin-bottom: 5px;
+}
+
+.user-chat-message{
+  margin-bottom:5px;
+}
+
 .chat-message p{
   background-color: #dbdad7;
   border-radius: 5px;
+  width: auto;
   max-width: 40%;
   padding: 5px;
 }
@@ -35,6 +44,7 @@ code {
   background-color: #438f44;
   border-radius: 5px;
   padding: 5px;
+  width: auto;
   max-width: 60%
 }
 
