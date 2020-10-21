@@ -38,6 +38,7 @@ code {
   width: auto;
   max-width: 40%;
   padding: 5px;
+  margin-left: 5px;
 }
 
 .user-chat-message p{
@@ -45,7 +46,8 @@ code {
   border-radius: 5px;
   padding: 5px;
   width: auto;
-  max-width: 60%
+  max-width: 60%;
+  margin-right: 5px;
 }
 
 .chat-input button {

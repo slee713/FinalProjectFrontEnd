@@ -197,7 +197,7 @@ function TripContainer(props){
                         {props.messages.map(msg => 
                             msg.user_hike.user_id == localStorage.id ?
                             <div className="user-chat-message" style={{display: 'flex', flexDirection:  'row-reverse'}}>
-                                <img src={msg.user_hike.user.img_url} style={{ 'max-width': '20px', height: 20}}/>
+                                <img src={msg.user_hike.user.img_url} style={{ 'max-width': '20px', height: 20, 'border-radius': '10px'}}/>
                                 <p>{msg.content}</p>
                             </div>:
                             <div className="chat-message" style={{display: 'flex', flexDirection:  'row'}}>
