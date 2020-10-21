@@ -49,7 +49,7 @@ function TrailSearch(props){
                     value={value}
                     onChange={(e)=> setValue(e.target.value)}
                     disabled={!ready}
-                    placeholder ="Search For Location"
+                    placeholder ="Find trails, cities, etc."
                 />
                 <ComboboxPopover className="list">
                     <ComboboxList>
