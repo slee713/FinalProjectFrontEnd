@@ -32,7 +32,6 @@ function Signup(props){
                 localStorage.id = resp.user.id
                 props.login(resp.user)
                 setOpen(false)
-                props.loginStatus()
             }
         })
     }
@@ -59,16 +58,12 @@ function Signup(props){
                         <Form.Input required label='Username' placeholder='Username' name="username"/>
                         <Form.Input required label='Password' type="password" placeholder='Password' name="password"/>
                     </Form.Group>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' style={{width: '100%', 'background-color': '#438f44'}}>Submit</Button>
                 </Form>
                 
             </Modal.Content>
 
-            <Modal.Actions>
-                <button color='green' onClick={() => setOpen(false)}>
-                Back
-                </button>
-            </Modal.Actions>
+            
         </Modal>
     )
 }

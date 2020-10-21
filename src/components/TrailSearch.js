@@ -30,6 +30,7 @@ function TrailSearch(props){
     })
     return (
         <div className="search">
+            
             <Combobox onSelect={
                 async (address)=> {
                     setValue(address, false)
@@ -50,7 +51,7 @@ function TrailSearch(props){
                     disabled={!ready}
                     placeholder ="Search For Location"
                 />
-                <ComboboxPopover >
+                <ComboboxPopover className="list">
                     <ComboboxList>
                     {status === "OK" && 
                     data.map(({id, description}) => (

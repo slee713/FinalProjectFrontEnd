@@ -15,6 +15,8 @@ import {
 } from '../redux/actions'
 import './ProfilePage.css'
 import TripDescCard from '../components/TripDescCard'
+import EditUserForm from '../components/EditUserForm'
+import DeleteUserModal from '../components/DeleteUserModal'
 
 function ProfilePage(props){
 
@@ -30,9 +32,9 @@ function ProfilePage(props){
         // props.loadFriendRequests()
         props.loadFriendTrips()
         let update = setInterval(()=>{
-            props.loadUser()
-            // // props.loadUsers()
-            props.loadFriendRequests()
+            // props.loadUser()
+            // // // props.loadUsers()
+            // props.loadFriendRequests()
         }, 1000)
 
         return () => {
@@ -74,12 +76,21 @@ function ProfilePage(props){
     return(
         <div className="profile">
            <div className="userInfo">
-               <Card
+               {/* <Card
                     image={user.img_url ? user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}
                     header={`${user.first_name} ${user.last_name}`}
                     meta={user.username}
                     extra={extra}
-                />
+                /> */}
+                <div className="user-image">
+                    <img src={user.img_url ? user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
+                </div>
+                <div className="user-detail">
+                    <h3>{`${user.first_name} ${user.last_name}`}</h3>
+                    <p>{user.email}</p>
+                    <EditUserForm />
+                    <DeleteUserModal />
+                </div>
            </div>
            <div className="newsfeed">
                <h2>Friend's Upcoming Trips</h2>

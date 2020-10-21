@@ -722,6 +722,47 @@ function fetchingFriendsTrips(){
     }
 }
 
+function updatingUser(username, password, first_name, last_name, email, img_url){
+    return (dispatch) => {
+        fetch(URL +`users/${localStorage.id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                password,
+                first_name,
+                last_name,
+                email,
+                img_url
+            })
+        })
+        .then(res => res.json())
+        .then(updatedUser => {
+            dispatch(fetchedUser(updatedUser))
+            // console.log(updatedUser)
+        })
+    }
+}
+
+function deletedUser(){
+    return {type: "DELETE_USER"}
+}
+
+function deletingUser(){
+    return (dispatch) => {
+        fetch(URL +`users/${localStorage.id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`
+            }
+        })
+        .then(dispatch(deletedUser()))
+    }
+}
+
 export { 
     fetchingHikingTrips, 
     fetchingHikingTrip,
@@ -752,5 +793,7 @@ export {
     fetchingMessages,
     creatingMessage,
     fetchingFriendsTrips,
-    fetchingTrails
+    fetchingTrails,
+    updatingUser,
+    deletingUser
 }

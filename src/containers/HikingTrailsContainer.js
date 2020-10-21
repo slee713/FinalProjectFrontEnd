@@ -69,6 +69,7 @@ function HikingTrailsContainer(props){
     return(
         <div>
             <div classname="search-container">
+                
                 <TrailSearch searchResults={searchResults} panTo={panTo} />
             
                 <div className="buttons">
@@ -97,8 +98,13 @@ function HikingTrailsContainer(props){
                     <InfoWindow 
                         position={{lat: parseFloat(selected.latitude), lng: parseFloat(selected.longitude)}}
                         onCloseClick={()=> setSelected(null)}>
-                        <div>
-                            <h2>{selected.name}</h2>
+                        <div className="info-window">
+                            <img src={selected.imgSqSmall}/>
+                            <div>
+                                <h2>{selected.name}</h2>
+                                <p>Distance: {selected.length} miles</p>
+                                <p>Rating: {selected.stars}</p>
+                            </div>
                         </div>
                     </InfoWindow> : null}
                 </GoogleMap>

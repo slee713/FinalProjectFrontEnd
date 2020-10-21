@@ -18,7 +18,7 @@ function TrailCard(props){
                 <Card.Header>{name}</Card.Header>
                 <Card.Description>
                     <p>{location}</p>
-                    <p>Stars: {stars}</p>
+                    <p>Rating: {stars}</p>
                     <p>Distance: {length} miles</p>
                 </Card.Description>
             </Card.Content>

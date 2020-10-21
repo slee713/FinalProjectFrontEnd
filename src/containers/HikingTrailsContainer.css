@@ -1,29 +1,42 @@
-.search-container{
-    width: auto;
-    height: 450px;
-    background-image: url('../photos/20190817_070658.jpg') center;
+/* .search-container{
+    background-image: url('../photos/peak.jpg') center;
     background-repeat: no-repeat;
     background-size: cover;
-  }
+    width: 100%
+  } */
   
   .search {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    background-image: url('../photos/20190817_070658.jpg');
-    max-width: 400px;
+    height: 450px;
     z-index: 5;
+    background-image: url('../photos/cabin.jpg');
+    background-position: center;
+    background-size: cover;
+    margin-top: 40px;
   }
+
   
   .search input{
     padding: 0.5rem;
+    margin-top: 15%;
+    margin-left: 37%;
+    margin-right: auto;
+    left: 50%;
     font-size: 1.5rem;
     width: 100%;
+    max-width: 400px;
+    z-index:10;
+  }
+  .list {
     z-index:10;
   }
   
   .buttons {
+    margin-top: 10px;
+    /* background-color:#105904; */
     left: 50%;
     display: flex;
     flex-direction: row;
@@ -33,7 +46,8 @@
   
   .buttons button{
     width: 50%;
-    max-width: 200px
+    max-width: 200px;
+    background-color:#438f44;
   }
 
 
@@ -41,3 +55,8 @@
       padding-top: 50px
   }
   
+  .info-window{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }

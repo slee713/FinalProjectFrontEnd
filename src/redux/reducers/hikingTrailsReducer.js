@@ -1,6 +1,6 @@
 import data from '../../tempData'
 
-let hikingTrailsReducer = (state ={ ...data}, action) => {
+let hikingTrailsReducer = (state ={ trails: []}, action) => {
     switch(action.type){
         case "LOAD_TRAILS":
             return {

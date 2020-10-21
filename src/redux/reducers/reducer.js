@@ -25,11 +25,16 @@ let loginReducer = (state = initialState, action) => {
         case "FETCH_USER":
             return {
                 ...state,
+                loggedIn: true,
                 user: {...action.payload,
                     food_plans: [...action.payload.food_plans.sort((a,b) => a.day > b.day ? 1 : -1)]
                 }
             }
-            
+        case "DELETE_USER":
+            return {
+                loggedIn: false,
+                user: {}
+            }
         case "ADD_PERSONAL_ITEM":
             state = {
                 ...state,

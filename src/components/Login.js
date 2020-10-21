@@ -26,7 +26,6 @@ function Login(props){
             if (resp.error)
                 alert(resp.error)
             else{
-                props.loginStatus()
                 localStorage.token = resp.token
                 localStorage.id = resp.user.id
                 setOpen(false)
@@ -55,7 +54,7 @@ function Login(props){
                     <label for="password">Password</label>
                     <input id="password" type="password" name='password'/>
                 </Form.Field>
-                <Button type='submit' style={{width: '100%'}}>Login</Button>
+                <Button type='submit' style={{width: '100%', 'background-color': '#438f44'}}>Login</Button>
                 </Form>
             </Modal.Content>
            

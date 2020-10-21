@@ -70,3 +70,6 @@
 .chat-input form input {
     width: 80%;
 }
+.chat-messages{
+    margin-bottom: 10px;
+}

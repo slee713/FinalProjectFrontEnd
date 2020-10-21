@@ -6,11 +6,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 function NavBar(props) {
-    const [login, setLogin] = React.useState(localStorage.token ? true : false)
+    const [login, setLogin] = React.useState(props.logged_in)
 
     const logout = () => {
         localStorage.clear()
-        setLogin(false)
         props.logout()
         props.history.push('/')
     }
@@ -23,9 +22,7 @@ function NavBar(props) {
         props.history.push('/mytrips')
     }
 
-    const loginStatus = () => {
-        setLogin(true)
-    }
+
 
     const myProfile = () => {
         props.history.push('/profile')
@@ -33,17 +30,17 @@ function NavBar(props) {
 
     return(
         <div className="navbar">
-            <div onClick={home}>Home</div>
+            <h1 onClick={home}>GearUP</h1>
             { 
-            login ?
-            <div className='options'>
-                <button onClick={myProfile}>My Profile</button>
-                <button onClick={myTrips}>My Hiking Trips</button>
-                <button onClick={logout}>Logout</button>
+            props.logged_in ?
+            <div className='logged-in-options'>
+                <p onClick={myTrips}>My Hiking Trips</p>
+                <p onClick={myProfile}>My Profile</p>
+                <p onClick={logout}>Logout</p>
             </div>:
             <div className='options'>
-                <Login loginStatus={loginStatus}/>
-                <Signup loginStatus={loginStatus}/>
+                <Login />
+                <Signup />
             </div>
             }
         </div>
@@ -51,7 +48,7 @@ function NavBar(props) {
 }
 const mapStateToProps = state => {
     return {
-        logged_in: state.loginReducer.logged_in
+        logged_in: state.loginReducer.loggedIn
     }
 }
 
