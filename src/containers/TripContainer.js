@@ -103,10 +103,10 @@ function TripContainer(props){
                             </div>
                             
                         </div>
-                        <p>Location: {location}</p>
-                        <p>Start Date: {start_date}</p>
-                        <p>End Date: {end_date}</p>
-                        <p>Description:</p>
+                        <p><strong>Location:</strong> {location}</p>
+                        <p><strong>Start Date:</strong> {start_date}</p>
+                        <p><strong>End Date:</strong> {end_date}</p>
+                        <p><strong>Description:</strong></p>
                         <p>{description}</p>
                     </div>
                     <div className="maps">

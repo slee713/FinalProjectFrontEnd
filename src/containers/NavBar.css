@@ -27,3 +27,21 @@
     margin-top: 0.8rem;
     width: 20%;
 }
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    padding-top: 8px;
+}
+
+.logo img{
+    padding-top: 2%;
+    height:25px;
+    width:25px;
+}
+
+.logo div{
+    font-size: 20px;
+    padding-top: 2px;
+    font-weight: bold;
+}

@@ -30,7 +30,11 @@ function NavBar(props) {
 
     return(
         <div className="navbar">
-            <h1 onClick={home}>GearUP</h1>
+            <div className="logo">
+                <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Backpack_icon.svg/1200px-Backpack_icon.svg.png"}/>
+                <div onClick={home}>GearUP</div>
+            </div>
+            
             { 
             props.logged_in ?
             <div className='logged-in-options'>

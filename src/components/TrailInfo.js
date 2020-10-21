@@ -30,13 +30,15 @@ function TrailInfo(props) {
                 <p>Location: {location}</p>
                 <p>Total Length: {length} miles</p>
                 <p>Difficulty: {difficulty}</p>
-                <div className="ascent-descent">
-                    <p>Ascent: {ascent} FT</p>
-                    <p className="total">Descent: {descent} FT </p>
-                </div>
-                <div className="ascent-descent">
-                    <p>Highest Elevation: {high} FT</p>
-                    <p className="max">Lowest Elevation: {low} FT</p>
+                <div className="row">
+                    <div >
+                        <p>Ascent: {ascent} FT</p>
+                        <p>Highest Elevation: {high} FT</p>
+                    </div>
+                    <div >
+                        <p >Descent: {descent} FT </p>
+                        <p >Lowest Elevation: {low} FT</p>
+                    </div>
                 </div>
                 
                 <p>Summary

@@ -41,3 +41,16 @@ code {
   background-color: #438f44;
   color: black
 }
+
+.trail-info-body{
+  width: 80%;
+  margin-left: 10%
+
+}
+
+.row{
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  justify-content: space-between;
+}

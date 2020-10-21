@@ -24,7 +24,7 @@ function ProfilePage(props){
     const friendRequests = useSelector(state => state.friendRequestReducer.friendRequests)
     const users = useSelector(state => state.allUserReducer.users)
     const friendsTrips = useSelector(state => state.friendTripsReducer.friendsTrips)
-    
+
     const today = new Date()
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -38,9 +38,9 @@ function ProfilePage(props){
         // props.loadFriendRequests()
         props.loadFriendTrips()
         let update = setInterval(()=>{
-            // props.loadUser()
+            props.loadUser()
             // // // props.loadUsers()
-            // props.loadFriendRequests()
+            props.loadFriendRequests()
         }, 1000)
 
         return () => {
