@@ -13,21 +13,21 @@ code {
 }
 
 .edit-item{
-  background-color:#438f44;
-  border-radius: 5px;
-  color: black;
+  /* background-color:#438f44;
+  border-radius: 5px; */
+  color: #438f44;
 }
 
 .delete-item{
-  background-color: red;
-  border-radius: 5px;
-  color: black
+  /* background-color: red;
+  border-radius: 5px; */
+  color: red
 }
 
 .chat-message p{
   background-color: #dbdad7;
   border-radius: 5px;
-  width: auto;
+  max-width: 40%;
   padding: 5px;
 }
 
@@ -35,6 +35,7 @@ code {
   background-color: #438f44;
   border-radius: 5px;
   padding: 5px;
+  max-width: 60%
 }
 
 .chat-input button {
@@ -43,14 +44,24 @@ code {
 }
 
 .trail-info-body{
-  width: 80%;
-  margin-left: 10%
-
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.row{
+.trail-content{
+  width: 100%;
+}
+
+.trail-row{
   display: flex;
   width: 70%;
   flex-direction: row;
   justify-content: space-between;
 }
+
+
+
+
+

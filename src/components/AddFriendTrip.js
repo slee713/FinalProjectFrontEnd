@@ -41,9 +41,9 @@ function AddFriendTrip(){
             onClose={() => setOpen(false)}
             onOpen={()=> setOpen(true)}
             open={open}
-            trigger={<p>Add Friends To Trip</p>}
+            trigger={<p>Invite Friends</p>}
         >
-            <Modal.Header>Add Friends To Trip</Modal.Header>
+            <Modal.Header>Invite Friends</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={(e) => submit(e)}>
                     <label>Select Friends</label>

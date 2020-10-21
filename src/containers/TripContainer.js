@@ -16,11 +16,12 @@ import {
     Marker,
     InfoWindow
 } from '@react-google-maps/api'
+import MembersList from '../components/MembersList'
 
 import EditHikingTripForm from '../components/EditHikingTripForm'
 
 const mapContainerStyle = {
-    width: '15vw',
+    width: '20vw',
     height: '20vh'
 }
 const libraries=['places']
@@ -30,7 +31,7 @@ function TripContainer(props){
     const [view, setView] = React.useState('trail')
     // const [page, setPage] = React.useState(1)
 
-    const { hiking_project_id , id,  name, start_date, end_date, description, group_gear_items, stops, users} = props.trip
+    const { hiking_project_id , id,  name, start_date, end_date, description, img, group_gear_items, stops, users} = props.trip
 
     const {latitude , longitude, location } = props.trail
 
@@ -88,41 +89,48 @@ function TripContainer(props){
     return(
         <div className="trip-body"> 
             <div className="tripInfo">
-                <div className="trip-image">
-                    <img src={props.trail.imgMedium}/>
-                </div>
+                <img src={img ? img : props.trail.imgMedium}/>
                 <div className="general">
                     <div className="info">
-                       
                         <div className= 'header'>
-                            <h2>{name}</h2>
+                            <h1>{name}</h1>
                             <div className="trip-options">
-                                <AddFriendTrip />
-                                <EditHikingTripForm/>
-                                <p onClick={deleteTrip}>Delete</p>
+                                    <AddFriendTrip />
+                                    <EditHikingTripForm/>
+                                    <p onClick={deleteTrip}>Delete</p>
+                            </div>    
+                        </div>
+                        <div className = 'trip-details'>
+                            <div className='trip-detail-col'>
+                                <div className='detail-row'>
+                                    <div className="trip-detail-col2">
+                                        <p><strong>Location:</strong> {location}</p>
+                                        <p><strong>Description:</strong></p>
+                                    </div>
+                                    <div className="trip-detail-col2">
+                                        <p><strong>Start Date:</strong> {start_date}</p>
+                                        <p><strong>End Date:</strong> {end_date}</p>
+                                    </div>
+                                </div>
+                                <p>{description}</p>
+                            </div>
+                            <div className="maps">
+                                <GoogleMap 
+                                    mapContainerStyle={mapContainerStyle} 
+                                    zoom={11}
+                                    center={center}
+                                    onLoad={onMapLoad}
+                                >  
+                                    <Marker 
+                                        position={{
+                                            lat: latitude,
+                                            lng: longitude
+                                        }}
+                                    />
+                                </GoogleMap>
                             </div>
                             
                         </div>
-                        <p><strong>Location:</strong> {location}</p>
-                        <p><strong>Start Date:</strong> {start_date}</p>
-                        <p><strong>End Date:</strong> {end_date}</p>
-                        <p><strong>Description:</strong></p>
-                        <p>{description}</p>
-                    </div>
-                    <div className="maps">
-                        <GoogleMap 
-                            mapContainerStyle={mapContainerStyle} 
-                            zoom={11}
-                            center={center}
-                            onLoad={onMapLoad}
-                        >  
-                            <Marker 
-                                position={{
-                                    lat: latitude,
-                                    lng: longitude
-                                }}
-                            />
-                        </GoogleMap>
                     </div>
                 </div>
                 <div className="tripNavBar">
@@ -147,6 +155,11 @@ function TripContainer(props){
                             active={view === 'route'}
                             onClick={()=> setView('route')}
                         />
+                        <Menu.Item
+                            name="Members"
+                            active={view === 'members'}
+                            onClick={()=> setView('members')}
+                        />
                     </Menu>
                     {/* <Menu name onClick={()=> setView('trail')}>Trail Info</Menu>
                     <p onClick={()=> setView('gear')}>Gear List</p>
@@ -157,7 +170,8 @@ function TripContainer(props){
                     { view === 'trail' ? <TrailInfo /> :
                      view === 'gear' ? <GearTab  /> :
                      view === 'food' ? <FoodPlan hiking_trip_id={props.trip.id}/> :
-                     view === 'route' ? <RoutePlan /> : null
+                     view === 'route' ? <RoutePlan /> : 
+                     view === 'members' ? <MembersList /> : null
                     }
                 </div>
             </div>
@@ -183,11 +197,11 @@ function TripContainer(props){
                         {props.messages.map(msg => 
                             msg.user_hike.user_id == localStorage.id ?
                             <div className="user-chat-message" style={{display: 'flex', flexDirection:  'row-reverse'}}>
-                                <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
+                                <img src={msg.user_hike.user.img_url} style={{ 'max-width': '20px', height: 20}}/>
                                 <p>{msg.content}</p>
                             </div>:
                             <div className="chat-message" style={{display: 'flex', flexDirection:  'row'}}>
-                                <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
+                                <img src={msg.user_hike.user.img_url} style={{ 'max-width': '20px', height: 20}}/>
                                 <p>{`${msg.content} - ${msg.user_hike.user.first_name}`}</p>
                             </div>
 

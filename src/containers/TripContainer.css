@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .tripInfo {
@@ -10,31 +10,55 @@
     flex-direction: column;
     width: 70%;
     justify-content: center;
-    padding: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.trip-image {
-    margin-left: auto;
-    margin-right: auto;
 
+
+.tripInfo img{
+    width: 100%;
+    max-height: 500px;
 }
 
 .tripNavBar {
     display: flex;
     margin-top: 20px;
     flex-direction: row;
-    justify-content: center;    
+    justify-content: flex-start; 
+    margin-bottom: 20px;   
 }
 
 .general {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .info {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+.trip-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.trip-detail-col{
+    width: 80%;
+}
+
+.trip-detail-col2{
+    width: 50%
+}
+
+.detail-row{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .header {

@@ -89,7 +89,7 @@ function ProfilePage(props){
                     extra={extra}
                 /> */}
                 <div className="user-image">
-                    <img src={user.img_url ? user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"}/>
+                    <img src={user.img_url}/>
                 </div>
                 <div className="user-detail">
                     <h3>{`${user.first_name} ${user.last_name}`}</h3>

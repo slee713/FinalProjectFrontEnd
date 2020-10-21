@@ -25,32 +25,33 @@ function TrailInfo(props) {
 
     return (
         <div className="trail-info-body">
-            <div className="trail-info-details">
-                <h1>{name}</h1>
-                <p>Location: {location}</p>
-                <p>Total Length: {length} miles</p>
-                <p>Difficulty: {difficulty}</p>
-                <div className="row">
-                    <div >
-                        <p>Ascent: {ascent} FT</p>
-                        <p>Highest Elevation: {high} FT</p>
+            <div className="trail-content">
+                <h5>{name}</h5>
+                <div className="trail-row">
+                    <div className="trail-col-1">
+                        <p><strong>Location:</strong> {location}</p>
+                        <p><strong>Total Length:</strong> {length} miles</p>
+                        <p><strong>Ascent:</strong> {ascent} FT</p>
+                        <p><strong>Highest Elevation:</strong> {high} FT</p>
+                        <p><strong>Condition Status:</strong>     {`${conditionStatus} - ${conditionDetails}`}</p>
                     </div>
-                    <div >
-                        <p >Descent: {descent} FT </p>
-                        <p >Lowest Elevation: {low} FT</p>
+                    <div className="trail-col-2">
+                        <p><strong>Difficulty:</strong> {difficulty}</p>
+                        <p ><strong>Descent:</strong> {descent} FT </p>
+                        <p ><strong>Lowest Elevation: </strong>{low} FT</p>
+                        <br/>
+                        <p><strong>Last Reported: </strong>{conditionDate}</p>
                     </div>
                 </div>
-                
                 <p>Summary
                     <ul>
                         <li>
-                                {summary}
+                            {summary}
                         </li>
                     </ul>
                 </p>
-                <p>Condition Status:     {`${conditionStatus} - ${conditionDetails}`}</p>
-                <p>Last Reported: {conditionDate}</p>
             </div>
+            
         </div>
     )
 }

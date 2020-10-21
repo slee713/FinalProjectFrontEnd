@@ -7,6 +7,11 @@ function Signup(props){
 
     const signup = (e) => {
         e.preventDefault()
+        let image
+        if(e.target.img_url.value)
+            image=e.target.img_url.value
+        else
+            image = "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"
         let config = {
             method: "POST",
             headers: {
@@ -19,7 +24,7 @@ function Signup(props){
                 first_name: e.target.first_name.value,
                 last_name: e.target.last_name.value,
                 email: e.target.email.value,
-                img_url: e.target.img_url.value
+                img_url: image
             })
         }
         fetch('http://localhost:3000/api/v1/users', config)
