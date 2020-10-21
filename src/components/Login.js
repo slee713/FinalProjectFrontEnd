@@ -54,7 +54,7 @@ function Login(props){
                     <label for="password">Password</label>
                     <input id="password" type="password" name='password'/>
                 </Form.Field>
-                <Button type='submit' style={{width: '100%', 'background-color': '#438f44'}}>Login</Button>
+                <Button type='submit' style={{width: '100%', 'background-color': '#438f44', color: 'black'}}>Login</Button>
                 </Form>
             </Modal.Content>
            

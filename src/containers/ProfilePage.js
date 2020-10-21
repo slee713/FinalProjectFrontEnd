@@ -24,6 +24,12 @@ function ProfilePage(props){
     const friendRequests = useSelector(state => state.friendRequestReducer.friendRequests)
     const users = useSelector(state => state.allUserReducer.users)
     const friendsTrips = useSelector(state => state.friendTripsReducer.friendsTrips)
+    
+    const today = new Date()
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    let todaysDate = yyyy + '-' + mm + '-' + dd
 
    const dispatch = useDispatch()
 
@@ -95,7 +101,11 @@ function ProfilePage(props){
            <div className="newsfeed">
                <h2>Friend's Upcoming Trips</h2>
                 <div>
-                    {friendsTrips.map(trip => <TripDescCard key={trip.id} trip={trip} />)}
+                    {friendsTrips.map(trip => {
+                        if(trip.start_date >= todaysDate)
+                            return <TripDescCard key={trip.id} trip={trip}/>
+                    }
+                    )}
                 </div>
            </div>
            <div className="users">

@@ -7,34 +7,28 @@
 .tripInfo {
     display: flex;
     flex-direction: column;
-    overflow: auto;
     width: 70%;
     justify-content: center;
     padding: 30px;
 }
 
 .trip-image {
-    width: auto;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .tripNavBar {
     display: flex;
     margin-top: 20px;
     flex-direction: row;
-    justify-content: space-between;
-}
-
-.tripNavBar p {
-    border: black;
-    border-style: double;
+    justify-content: center;    
 }
 
 .general {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .info {

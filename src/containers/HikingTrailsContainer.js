@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {
     GoogleMap,
     useLoadScript,
@@ -26,10 +26,14 @@ function HikingTrailsContainer(props){
         libraries
     })
     const [mapView, setMapView] = React.useState(false)
-    const [lat , setLat] = React.useState(null)
-    const [lng, setLng] = React.useState(null)
+    const [lat , setLat] = React.useState(38.889248)
+    const [lng, setLng] = React.useState(-77.050636)
     const dispatch = useDispatch()
     const hikingTrails = useSelector(state => state.hikingTrailsReducer.trails)
+
+    useEffect(()=>{
+        // dispatch(fetchingTrails(38.889248, -77.050636))
+    },[])
 
     const searchResults = (lat, lng) => {
         setLat(lat)
@@ -66,9 +70,13 @@ function HikingTrailsContainer(props){
     if(loadError) return "Error Loading Map"
     if(!isLoaded) return "Loading Maps"
 
+   
+
+    
+
     return(
         <div>
-            <div classname="search-container">
+            <div className="search-container">
                 
                 <TrailSearch searchResults={searchResults} panTo={panTo} />
             

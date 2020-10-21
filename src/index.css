@@ -12,3 +12,32 @@ code {
     monospace;
 }
 
+.edit-item{
+  background-color:#438f44;
+  border-radius: 5px;
+  color: black;
+}
+
+.delete-item{
+  background-color: red;
+  border-radius: 5px;
+  color: black
+}
+
+.chat-message p{
+  background-color: #dbdad7;
+  border-radius: 5px;
+  width: auto;
+  padding: 5px;
+}
+
+.user-chat-message p{
+  background-color: #438f44;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.chat-input button {
+  background-color: #438f44;
+  color: black
+}

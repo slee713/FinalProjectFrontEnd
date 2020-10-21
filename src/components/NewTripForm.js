@@ -33,7 +33,11 @@ function NewTripForm(props) {
         onClose={() => setOpen(false)}
         onOpen={ () => setOpen(true)}
         open = {open}
-        trigger = {<p className="create-trip-button">Create Hiking Trip</p>}
+        trigger = {<Button 
+            style={{'background-color': '#438f44', color: 'black'}}
+            className="create-trip-button">
+                Create Hiking Trip
+            </Button>}
         >
             <Modal.Header>Hiking Trip Form</Modal.Header>
             <Modal.Content>
