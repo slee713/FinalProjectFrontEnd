@@ -9,6 +9,7 @@ function EditHikingTripForm(props){
     const [open, setOpen] = React.useState(false)
     const [id, setId] = React.useState(props.trip.id)
     const [name, setName] = React.useState(props.trip.name)
+    const [img, setImg] = React.useState(props.trip.img)
     const [start_date, setStartDate] = React.useState(props.trip.start_date)
     const [end_date, setEndDate] = React.useState(props.trip.end_date)
     const [description, setDescription] = React.useState(props.trip.description)
@@ -37,10 +38,17 @@ function EditHikingTripForm(props){
                         <input id="id" name="name" type="hidden" value={id}/>
                         <input id='hiking_project_id' type="hidden" value={hiking_project_id}/>
                     </Form.Field>
-                    <Form.Field>
-                        <label for="name">Name</label>
-                        <input id="name" name="name" value={name} onChange={(e)=> setName(e.target.value)}/>
-                    </Form.Field>
+                    <Form.Group widths={2}>
+                        <Form.Field>
+                            <label for="name">Name</label>
+                            <input id="name" name="name" value={name} onChange={(e)=> setName(e.target.value)}/>
+                        </Form.Field>
+                        <Form.Field>
+                            <label for="img">Image URL</label>
+                            <input id="img" name="img" value={img} onChange={(e) => setImg(e.target.value)}/>
+                        </Form.Field>
+                    </Form.Group>
+                    
                     <Form.Group widths={2}>
                         <Form.Field>
                             <label for="start_date">Start Date</label>

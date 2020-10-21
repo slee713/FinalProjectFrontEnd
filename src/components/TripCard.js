@@ -11,14 +11,14 @@ function TripCard(props){
     }
 
     return(
-        <div>
-            <Card className ="trip-card" onClick={handleClick}>
-                <Card.Content>
-                    <Card.Header content={props.trip.name} />
-                    <Card.Meta content={props.trip.start_date} />
-                    <Card.Description content={props.trip.users.map(user => `${user.first_name} ${user.last_name}`).join(', ')} />
-                </Card.Content>
-            </Card>
+        <div className="trip-card-body" onClick={handleClick}>
+            <img src={props.trip.img ? props.trip.img : "https://static.thenounproject.com/png/129830-200.png"}/>
+            <div className="trip-card-details" onClick={handleClick}>
+                <h2>{props.trip.name}</h2>
+                <p><strong>Start Date: </strong> {props.trip.start_date}</p>
+                <p><strong>End Date: </strong> {props.trip.end_date}</p>
+                <p><strong>Hikers: </strong>{props.trip.users.map(user=>`${user.first_name} ${user.last_name}`).join(', ')}</p>
+            </div>
         </div>
     )
 }

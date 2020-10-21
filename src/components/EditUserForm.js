@@ -29,9 +29,9 @@ function EditUserForm(){
         onOpen={() => setOpen(true)}
         open={open}
         size='small'
-        trigger={<p>Edit User Information</p>}
+        trigger={<p>Edit Account</p>}
         >
-            <Modal.Header>Signup</Modal.Header>
+            <Modal.Header>Edit Account</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={(e)=> updateUser(e)}>
                     <Form.Group unstackable widths={2}>

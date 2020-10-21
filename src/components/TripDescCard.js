@@ -50,16 +50,15 @@ function TripDescCard(props){
             }
             open={open}
             trigger={
-               <Card>
-                   <Card.Content >
-                       <Card.Header>{props.trip.name}</Card.Header>
-                       <Card.Description>
-                           <p>Start Date: {props.trip.start_date}</p>
-                           <p>End Date: {props.trip.end_date}</p>
-                           <p>Members: {props.trip.users.map(user => `${user.first_name} ${user.last_name},`)}</p>
-                       </Card.Description>
-                    </Card.Content>
-               </Card>
+                <div className="trip-card-body" >
+                    <img src={props.trip.img ? props.trip.img : "https://static.thenounproject.com/png/129830-200.png"}/>
+                    <div className="trip-card-details" >
+                        <h3>{props.trip.name}</h3>
+                        <p><strong>Start Date: </strong> {props.trip.start_date}</p>
+                        <p><strong>End Date: </strong> {props.trip.end_date}</p>
+                        <p><strong>Hikers: </strong>{props.trip.users.map(user=>`${user.first_name} ${user.last_name}`).join(', ')}</p>
+                    </div>
+                </div>
             }
         >
             <Modal.Header>{name}</Modal.Header>

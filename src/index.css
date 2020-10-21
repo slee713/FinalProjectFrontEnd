@@ -93,8 +93,42 @@ code {
   margin-bottom: 10px;
 }
 
+.trip-card-body{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
 
 
+.trips-container{
+  margin-top: 50px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trip-container h1{
+  margin-bottom: 10px
+}
+
+.trip-card-body img{
+  height: 125px;
+  width: 190px;
+}
+
+.trip-card-details {
+  margin-left: 50px;
+}
+
+.trips-container-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.trips-container-header div{
+  margin-top: 10px;
+}
 
 
 

@@ -37,3 +37,9 @@
     border-radius: 50%;
 }
 
+.user-detail h3{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
