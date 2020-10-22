@@ -41,11 +41,12 @@ function HikingTripsContainer(props){
                      </select>
                  </div>
             </div>
-            {props.trips.map(trip => 
+            {props.trips.length > 0 ? props.trips.map(trip => 
                 <div>
                     <TripCard key={trip.id} trip={trip}/>
                 </div>
-            )}
+            ): 
+            <h5 style={{textAlign: 'center'}}>You Have No Hiking Trips Planned!</h5>}
         </div>
     )
 }

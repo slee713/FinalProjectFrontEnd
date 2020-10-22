@@ -105,9 +105,10 @@ code {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+  height: 500px;
 }
 
-.trip-container h1{
+.trips-container h1{
   margin-bottom: 10px
 }
 
@@ -169,4 +170,16 @@ code {
 
 .members-list-col{
   margin-bottom: 50px;
+}
+
+
+.footer {
+  background-color: black;
+  height: 200px;
+  padding-top: 50px
+}
+
+.footer p{
+  text-align:center;
+  color: #438f44
 }

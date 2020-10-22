@@ -19,7 +19,11 @@ function App() {
         <Route exact path='/mytrips/:id' render={ (routerProps) => <TripContainer {...routerProps}/>}/>
         <Route exact path='/profile' render={ (routerProps) => <ProfilePage {...routerProps}/>}/>
       </Switch>
-      
+      {/* <div className="footer">
+          <p>Created By Steven Lee</p>
+          <p>Hiking Trail Information Provided by Hiking Project</p>
+          <p>Visit Hiking Project at wwww.hikingproject.com</p>
+      </div> */}
     </BrowserRouter>
   );
 }

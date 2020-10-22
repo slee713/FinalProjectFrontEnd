@@ -32,7 +32,7 @@ function HikingTrailsContainer(props){
     const hikingTrails = useSelector(state => state.hikingTrailsReducer.trails)
 
     useEffect(()=>{
-        // dispatch(fetchingTrails(38.889248, -77.050636))
+        dispatch(fetchingTrails(38.889248, -77.050636))
     },[])
 
     const searchResults = (lat, lng) => {

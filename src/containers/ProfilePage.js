@@ -37,9 +37,10 @@ function ProfilePage(props){
     useEffect(()=> {
         // props.loadUsers()
         // props.loadFriendRequests()
-        props.loadFriendTrips()
+        
         let update = setInterval(()=>{
             props.loadUser()
+            props.loadFriendTrips()
             // // // props.loadUsers()
             props.loadFriendRequests()
         }, 1000)
