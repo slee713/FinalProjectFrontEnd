@@ -98,7 +98,7 @@ function ProfilePage(props){
                 </div>
            </div>
            <div className="newsfeed">
-               <h2>Friend's Upcoming Trips</h2>
+               <h1>Friend's Upcoming Trips</h1>
                 <div className='feed'>
                     {friendsTrips.map(trip => {
                         if(trip.start_date >= todaysDate)

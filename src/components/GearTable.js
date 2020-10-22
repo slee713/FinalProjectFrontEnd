@@ -48,7 +48,7 @@ function GearTable(props){
     }
 
     return(
-        <div style={{marginTop: '10px'}}>
+        <div style={{marginTop: '10px'}} className='gear-table-container'>
             <h4>{props.category} Gear</h4>
             <form onSubmit={(e) => submitForm(e)}>
                 <input type="hidden" value={id} />

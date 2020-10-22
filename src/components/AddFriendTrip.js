@@ -44,7 +44,7 @@ function AddFriendTrip(){
             onOpen={()=> setOpen(true)}
             size={'mini'}
             open={open}
-            trigger={<p>Add Friends</p>}
+            trigger={<p className='edit-user'>Add Friends</p>}
         >
             <Modal.Header>Add Friends</Modal.Header>
             <Modal.Content>

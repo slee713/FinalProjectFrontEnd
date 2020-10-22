@@ -29,7 +29,7 @@ function EditHikingTripForm(props){
             onOpen={()=> setOpen(true)}
             open={open}
             size={'small'}
-            trigger={<p>Edit</p>}
+            trigger={<p className='edit-user'>Edit</p>}
         >
             <Modal.Header>Edit Hiking Trip</Modal.Header>
             <Modal.Content>

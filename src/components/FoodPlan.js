@@ -56,7 +56,7 @@ function FoodPlan(props){
     }
 
     return(
-        <div>
+        <div className = "gear-table-container">
             <h4>Food Plan</h4>
             <form onSubmit={(e)=> submitForm(e)}>
                 <input type="hidden" name="id"  value ={id} onChange={(e)=> setId(e.target.value)}/>
@@ -65,7 +65,7 @@ function FoodPlan(props){
                 <label>Breakfast</label>
                 <input name="breakfast" value={breakfast} onChange={(e) => setBreakfast(e.target.value)}/>
                 <label>Lunch</label>
-                <input name="lunch" value={lunch} onChange={(e) => setLunch(e.target.value)}/>
+                <input name="lunch" value={lunch} onChange={(e) => setLunch(e.target.value)}/><br/>
                 <label>Dinner</label>
                 <input name="dinner" value={dinner} onChange={(e) => setDinner(e.target.value)}/>
                 <label>Snacks</label>

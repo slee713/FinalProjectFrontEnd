@@ -138,7 +138,35 @@ code {
   color: red
 }
 
+.gear-table-container{
+  margin-bottom: 50px;
+}
+
+.gear-table-container form{
+  text-align: center;
+}
+
+.gear-table-container input{
+  border-radius: 5px;
+  margin-left: 5px
+}
+
+.gear-table-container form label{
+  margin-left: 10px;
+}
+
+.gear-table-container button{
+  margin-left: 10px;
+  background-color: #438f44;
+  height:22px;
+  border-radius: 5px;
+}
 
 
+.food-plan-container form{
+  text-align: center;
+}
 
-
+.members-list-col{
+  margin-bottom: 50px;
+}

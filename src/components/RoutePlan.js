@@ -51,7 +51,7 @@ function RoutePlan(){
     }
 
     return(
-        <div>
+        <div className='gear-table-container'>
            <h4>Route Plan</h4>
            <form onSubmit={(e) => submitForm(e)}>
                <input type="hidden" name="id" value={id} />
@@ -60,7 +60,7 @@ function RoutePlan(){
                <label>Name</label>
                <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
                <label>Elevation</label>
-               <input type="number" name="elevation" value={elevation} onChange={(e) => setElevation(e.target.value)} />
+               <input type="number" name="elevation" value={elevation} onChange={(e) => setElevation(e.target.value)} /><br/>
                <label>Distance</label>
                <input type="number" name="distance" step="0.1" value={distance} onChange={(e) => setDistance(e.target.value)} />
                <label>Notes</label>

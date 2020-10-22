@@ -27,7 +27,7 @@ function DeleteTripModal(props){
             onOpen={()=> setOpen(true)}
             open={open}
             size='mini'
-            trigger={<p>Delete Trip</p>}
+            trigger={<p className='delete-user'>Delete Trip</p>}
         >
             <Modal.Content>
                 <h2>Are you sure you want to delete this hiking trip?</h2>
