@@ -15,6 +15,10 @@ let allUserReducer = (state = {users: []}, action) => {
                 ...state,
                 users: [...state.users, action.payload]
             }
+        case "RESET_USERS":
+            return {
+                users: []
+            }
         default:
             return state
     }

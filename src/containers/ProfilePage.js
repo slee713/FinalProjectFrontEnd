@@ -67,6 +67,7 @@ function ProfilePage(props){
 
    const requestFriend = (user, friend) => {
         dispatch(sendingFriendRequest(user, friend))
+        dispatch({type: "RESET_USERS"})
    }
 
    const removeFriend = (friend) => {
@@ -176,7 +177,8 @@ const mapDispatchToProps = dispatch => {
         loadFriendRequests: () => dispatch(fetchingFriendRequests()),
         loadUsers: (search) => dispatch(fetchingUsers(search)),
         loadUser: () => dispatch(fetchingUser()),
-        loadFriendTrips: () => dispatch(fetchingFriendsTrips())
+        loadFriendTrips: () => dispatch(fetchingFriendsTrips()),
+        resetUsers: ()=> dispatch({type: "RESET_USERS"})
     }
 }
 

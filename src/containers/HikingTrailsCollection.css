@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     height: 800px;
     width: 80%;
-    overflow: auto;
+    /* overflow: auto; */
     margin-left: auto;
     margin-right: auto;
    
