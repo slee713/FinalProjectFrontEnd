@@ -83,6 +83,7 @@
     z-index: 5;
     height: 100%;
     border-left-style: groove;
+    border-width: 1px;
     border-color: black;
 }
 
