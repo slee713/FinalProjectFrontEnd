@@ -67,7 +67,7 @@ function ProfilePage(props){
 
    const requestFriend = (user, friend) => {
         dispatch(sendingFriendRequest(user, friend))
-        dispatch({type: "RESET_USERS"})
+        dispatch({type: "REMOVE_USER", payload: friend })
    }
 
    const removeFriend = (friend) => {
