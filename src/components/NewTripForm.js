@@ -34,6 +34,7 @@ function NewTripForm(props) {
         onClose={() => setOpen(false)}
         onOpen={ () => setOpen(true)}
         open = {open}
+        size = {'small'}
         trigger = {<Button 
             style={{'background-color': '#438f44', color: 'black'}}
             className="create-trip-button">
@@ -53,7 +54,7 @@ function NewTripForm(props) {
                     <Form.Field>
                         <Form.TextArea label="Description" placeholder='Description' name='description'/>
                     </Form.Field>
-                    <Button type="submit">Create Trip</Button>
+                    <Button type="submit" style={{width: '100%', 'background-color': '#438f44'}}>Create Trip</Button>
                 </Form>
                 
             </Modal.Content>

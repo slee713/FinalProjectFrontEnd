@@ -48,7 +48,7 @@ function GearTable(props){
     }
 
     return(
-        <div>
+        <div style={{marginTop: '10px'}}>
             <h4>{props.category} Gear</h4>
             <form onSubmit={(e) => submitForm(e)}>
                 <input type="hidden" value={id} />
@@ -56,7 +56,7 @@ function GearTable(props){
                 <input name="name" value={name} onChange={(e)=>setName(e.target.value)}/>
                 <label>Quantity</label>
                 <input name="qty" value={qty} onChange={(e)=>setQty(e.target.value)}/>
-                <label>Description</label>
+                <label>Notes</label>
                 <input name="notes" type="text" value={notes} onChange={(e)=>setNotes(e.target.value)}/>
                     
                 <button >{action === 'add' ? 'Add Item' : 'Update Item'}</button> 

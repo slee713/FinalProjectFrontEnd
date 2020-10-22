@@ -130,6 +130,13 @@ code {
   margin-top: 10px;
 }
 
+.edit-user:hover{
+  color:  #438f44
+}
+
+.delete-user:hover{
+  color: red
+}
 
 
 

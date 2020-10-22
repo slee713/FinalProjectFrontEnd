@@ -29,7 +29,7 @@ function EditUserForm(){
         onOpen={() => setOpen(true)}
         open={open}
         size='small'
-        trigger={<p>Edit Account</p>}
+        trigger={<p className='edit-user'>Edit</p>}
         >
             <Modal.Header>Edit Account</Modal.Header>
             <Modal.Content>

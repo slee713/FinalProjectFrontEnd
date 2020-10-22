@@ -42,7 +42,7 @@ function TripContainer(props){
         
         let load = setInterval(()=>{
             props.loadMessages(id)
-            // props.loadHikingTrip(id)
+            props.loadHikingTrip(id)
         }, 1000)
 
         return () => {

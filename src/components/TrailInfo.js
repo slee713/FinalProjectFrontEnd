@@ -8,6 +8,7 @@ function TrailInfo(props) {
     const {id, 
         name, 
         stars, 
+        starVotes,
         location, 
         length, 
         imgMedium, 
@@ -36,14 +37,14 @@ function TrailInfo(props) {
                         <p><strong>Condition Status:</strong>     {`${conditionStatus} - ${conditionDetails}`}</p>
                     </div>
                     <div className="trail-col-2">
+                        <p><strong>Rating: </strong>{`${stars} (${starVotes})`}</p>
                         <p><strong>Difficulty:</strong> {difficulty}</p>
                         <p ><strong>Descent:</strong> {descent} FT </p>
                         <p ><strong>Lowest Elevation: </strong>{low} FT</p>
-                        <br/><br/>
                         <p><strong>Last Reported: </strong>{conditionDate}</p>
                     </div>
                 </div>
-                <p>Summary
+                <p style={{marginTop: '20px'}}><strong>Summary:</strong>
                     <ul>
                         <li>
                             {summary}

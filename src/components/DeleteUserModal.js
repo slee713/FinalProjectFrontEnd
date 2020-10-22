@@ -28,7 +28,7 @@ function DeleteUserModal(props){
         onOpen={() => setOpen(true)}
         open={open}
         size='mini'
-        trigger={<p>Delete Account</p>}
+        trigger={<p className="delete-user">Delete</p>}
         >
             <Modal.Content>
                 <h2 style={{textAlign: 'center'}}>Are you sure you want to delete your account?</h2>
