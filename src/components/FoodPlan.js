@@ -100,7 +100,7 @@ function FoodPlan(props){
                             <Table.Cell>{item.notes}</Table.Cell>
                             <Table.Cell>
                                 <button onClick={() =>editBtn(item)}>Edit</button>
-                                <span><button onClick={() => deleteFoodPlan(item.id)}>Delete</button></span>
+                                <span><button style={{backgroundColor: 'red'}} onClick={() => deleteFoodPlan(item.id)}>Delete</button></span>
                             </Table.Cell>
                         </Table.Row>)
                       }

@@ -89,7 +89,7 @@ function RoutePlan(){
                             <Table.Cell>
                                 <button onClick={() => editStop(stop)}>Edit</button>
                                 <span>
-                                    <button onClick={() => deleteStop(stop.id)}>Delete</button>
+                                    <button style={{backgroundColor: 'red'}} onClick={() => deleteStop(stop.id)}>Delete</button>
                                 </span>
                             </Table.Cell>
                         </Table.Row>
