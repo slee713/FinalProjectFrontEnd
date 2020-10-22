@@ -76,9 +76,10 @@ function ProfilePage(props){
 
    const searchUsers = (e) => {
        e.preventDefault()
-       
-       props.loadUsers(e.target.search.value)
-       
+       if (e.target.search.value.length > 0)
+        props.loadUsers(e.target.search.value)
+       else
+        dispatch({type: "RESET_USERS"})
    }
 
   
