@@ -198,11 +198,11 @@ function TripContainer(props){
                         {props.messages.map(msg => 
                             msg.user_hike.user_id == localStorage.id ?
                             <div className="user-chat-message" style={{display: 'flex', flexDirection:  'row-reverse'}}>
-                                <img src={msg.user_hike.user.img_url} style={{ 'max-width': '20px', height: 20, 'border-radius': '10px'}}/>
+                                <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20, 'border-radius': '10px'}}/>
                                 <p>{msg.content}</p>
                             </div>:
                             <div className="chat-message" style={{display: 'flex', flexDirection:  'row'}}>
-                                <img src={msg.user_hike.user.img_url} style={{ 'max-width': '20px', height: 20}}/>
+                                <img src={msg.user_hike.user.img_url ? msg.user_hike.user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{ 'max-width': '20px', height: 20}}/>
                                 <p>{`${msg.content} - ${msg.user_hike.user.first_name}`}</p>
                             </div>
 

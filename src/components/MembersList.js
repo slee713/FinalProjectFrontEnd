@@ -10,7 +10,7 @@ export default function MembersList(){
             <div className='members-list-col'>
                 {users.map(user => 
                     <div className='members-list-info' style={{display: 'flex', flexDirection: 'row'}}>
-                        <img src={user.img_url} style={{width: '50px', height: '50px', 'border-radius': '25px'}}/>
+                        <img src={user.img_url ? user.img_url : "https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg"} style={{width: '50px', height: '50px', 'border-radius': '25px'}}/>
                         <h5>{`${user.first_name} ${user.last_name}`}</h5>
                     </div>
                 )}
